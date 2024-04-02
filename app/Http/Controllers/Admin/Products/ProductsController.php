@@ -28,13 +28,13 @@ class ProductsController extends Controller
     {
         try {
             if ($request->search != null) {
-                $products = $this->products::select('pro_id', 'pro_name', 'pro_price', 'pro_img', 'category_id')->where('name', 'like', '%' . $request->search . '%')->latest('created_at')->paginate(5);
+                $products = $this->products::withoutTrashed()->select('pro_id', 'pro_name', 'pro_price', 'pro_img', 'category_id')->where('pro_name', 'like', '%' . $request->search . '%')->latest('created_at')->paginate(20);
             } else {
-                $products = $this->products::select('pro_id', 'pro_name', 'pro_price', 'pro_img', 'category_id')->latest('created_at')->paginate(5);
+                $products = $this->products::withoutTrashed()->select('pro_id', 'pro_name', 'pro_price', 'pro_img', 'category_id')->latest('created_at')->paginate(20);
             }
             return view('Admin.Product.product', compact('products'));
         } catch (\Throwable $exception) {
-            $product = [];
+            $products = [];
             DB::rollBack();
             Log::channel('daily')->error('Message: ' . $exception->getMessage() . ' Line :' . $exception->getLine());
             Alert::error('Error', 'Connection failed !');

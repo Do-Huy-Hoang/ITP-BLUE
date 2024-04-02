@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-8 ">
-                                <form method="GET" action="{{route('admin-categories')}}" id="form-search">
+                                <form method="GET" action="{{route('admin-products')}}" id="form-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="search" id="search" placeholder="Search by Name">
                                         <span class="input-group-btn">

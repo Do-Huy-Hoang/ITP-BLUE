@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
+use App\Models\Products;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -19,24 +21,10 @@ class IndexController extends Controller
         $this->middleware('cumstomer.page:Customer');
     }
     public function index(){
-        // $count = 0;
-        // $slider = $this->slider::all();
-        // $category = $this->category::all();
-        // $product = $this->product::latest()->get();
-        // $settings = $this->settings::all();
-        // ,compact('slider', 'count', 'category', 'product', 'settings')
-        if (Auth::check()) {
-            Log::info('User is logged in.');
-        } else {
-            Log::info('User is not logged in.');
-        }
-        return view('Customer.index');
+        $categories = Categories::withoutTrashed()->get();
+        $featuredProducts = Products::withoutTrashed()->where('is_featured', true)->get();
+        $newestProducts = Products::withoutTrashed()->orderBy('pro_id', 'desc')->take(6)->get();
+        return view('Customer.index', compact('categories', 'featuredProducts','newestProducts'));
     }
 
-
-    // public function about_us(){
-    //     $category = $this->category::all();
-    //     $settings = $this->settings::all();
-    //     return view('Home.aboutus', compact('category','settings'));
-    // }
 }
