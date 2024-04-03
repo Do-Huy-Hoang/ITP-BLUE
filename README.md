@@ -78,20 +78,16 @@ Here is how you can run the project locally:
     ```sh
     php artisan key:generate
     ```
-
-1. Run migration
-    ```
-    php artisan migrate
-    ```
     
-1. Run seeder
+1. Run migration and seeder
     ```
-    php artisan db:seed
+    php artisan migrate --seed
     ```
-    this command will create 2 users (admin and normal user):
-     > email: admin@gmail.com , password: password
+    * Terminal will display a notification:
+         The database 'itpblue' does not exist on the 'mysql' connection.  
+            Would you like to create it? (yes/no) []
 
-     > email: user@gmail.com , password: password 
+     > yes
 
 1. Run server 
     > for valet users visit `velflix.test` in your favorite browser
