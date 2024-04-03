@@ -10,7 +10,7 @@ class Products extends Model
     use SoftDeletes;
     protected $table = 'products';
     protected $primaryKey = 'pro_id';
-    protected $fillable= ['pro_id','pro_name','pro_brand','pro_description','pro_price','category_id','pro_img', 'created_at','is_featured'];
+    protected $fillable= ['pro_id','pro_name','pro_brand','pro_description','pro_price','pro_quantity','pro_status','category_id','pro_img', 'created_at','is_featured'];
 
     public function category(){
         return $this->belongsTo(Categories::class, 'category_id');

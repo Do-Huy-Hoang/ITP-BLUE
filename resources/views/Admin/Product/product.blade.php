@@ -68,6 +68,7 @@
                                     <th>Price</th>
                                     <th>Image(s)</th>
                                     <th>Category</th>
+                                    <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -83,6 +84,12 @@
                                         @endif
                                     </td>
                                     <td>{{ $item->category->cate_name}}</td>
+                                    <th>
+                                        <a href="{{ route('admin-products-change-status', ['id'=>$item->pro_id]) }}" class="btn @if($item->pro_status == true) btn-success @else btn btn-danger @endif " role="button">
+                                            @if($item->pro_status == true) On @else Off @endif 
+                                        </a>
+                                       
+                                    </th>
                                     <td>
                                         <a href="{{ route('admin-products-edit', ['id'=>$item->pro_id]) }}" class="btn btn-success" role="button">
                                             <i class="fa fa-fw fa-edit"></i>

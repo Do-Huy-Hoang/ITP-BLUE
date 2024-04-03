@@ -16,6 +16,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('admin-roles')}}">
+                    <i class="nav-icon fa fa-list-alt " aria-hidden="true"></i>
+                    <span>Roles</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('admin-permission')}}">
                     <i class="nav-icon fa fa-plus-square" aria-hidden="true"></i>
                     <span>Add data permission</span>

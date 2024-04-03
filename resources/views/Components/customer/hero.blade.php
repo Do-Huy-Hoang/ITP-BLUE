@@ -7,22 +7,21 @@
                         <i class="fa fa-bars"></i>
                         <span>All Categories</span>
                     </div>              
-
                     <ul>
-                        @foreach ($categories->where('cate_parent_id',0) as $parent)
+                        @foreach ($categories->where('cate_parent_id', 0) as $parent)
                             <li><a href="javascript:void(0)" class="show-overlay cate-li"
                                     data-target="overlay{{ $parent->cate_id}}">{{ $parent->cate_name }}</a></li>
                         @endforeach
                     </ul>
-                    @foreach ($categories->where('cate_parent_id',0) as $parent)
+                    @foreach ($categories->where('cate_parent_id', 0) as $parent)
                         <div id="overlay{{ $parent->cate_id}}" class="overlay">
                             <h2>{{ $parent->cate_name }}</h2>
-                            <div class="row">
-                                @foreach ($categories->where('cate_parent_id', $parent->cate_id) as $category)
+                            <div class="row-md-4">                              
                                     <div class="col-md-4">
                                         <ul class="list-unstyled">
+                                        @foreach ($categories->where('cate_parent_id', $parent->cate_id) as $category)
                                             <li>
-                                                <a href="#">
+                                                <a href="{{ route('product.show', ['id' => $category->cate_id]) }}">
                                                     <figure style="text-align: center;">
                                                         <img src="data:image/jpeg;base64,{{ base64_encode($category->image) }}"
                                                             style=" display: block; margin: auto;" height="120px" width="150px">
@@ -31,9 +30,9 @@
                                                     </figure>
                                                 </a>
                                             </li>
+                                            @endforeach
                                         </ul>
-                                    </div>
-                                @endforeach
+                                    </div>  
                             </div>
                         </div>
                     @endforeach
@@ -60,10 +59,11 @@
                             <span>support 24/7 time</span>
                         </div>
                     </div>
+                 @if($isBanner==true)   
                 </div>
-                <div class="hero__item set-bg">
-                    <img src="img/hero/Online-electronic-store.jpg" alt="Online electronic store" style="width: 100%; height: 100%;">
+                    <div class="hero__item set-bg" data-setbg="img/hero/main-pic.png"  style="background-position: center top; margin-top: 20px;">
                 </div>
+                @endif
             </div>
         </div>
     </div>

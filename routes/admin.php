@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\Categories\CategoriesController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Permission\PermissionController;
+use App\Http\Controllers\Admin\Profile\ProfileController;
 use App\Http\Controllers\Admin\Products\ProductsController;
+use App\Http\Controllers\Admin\Roles\RolesController;
 use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function (){
     Route::get('/', [AdminController::class, 'index'])->name('admin');
@@ -19,7 +21,19 @@ Route::prefix('admin')->group(function (){
         Route::get('/', [ProductsController::class, 'index'])->name('admin-products');
         Route::get('/add',[ProductsController::class, 'add'])->name('admin-products-add');
         Route::get('/edit/{id}',[ProductsController::class, 'edit'])->name('admin-products-edit');
-        Route::get('/delete/{id}',[ProductsController::class, 'delete'])->name('admin-products-delete');    
+        Route::get('/delete/{id}',[ProductsController::class, 'delete'])->name('admin-products-delete');  
+        Route::get('/change-status/{id}',[ProductsController::class, 'changeStatus'])->name('admin-products-change-status');  
+    });
+    //Role
+    Route::prefix('/roles')->group(function () {
+        Route::get('/', [RolesController::class, 'index'])->name('admin-roles');
+        Route::get('/add', [RolesController::class, 'add'])->name('admin-roles-add');
+        Route::get('/edit/{id}', [RolesController::class, 'edit'])->name('admin-roles-edit');
+        Route::get('/delete/{id}', [RolesController::class, 'delete'])->name('admin-roles-delete');
+    });
+
+    Route::prefix('/profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'index'])->name('admin-profile');
     });
     // //Orders
     // Route::prefix('/order')->group(function () {

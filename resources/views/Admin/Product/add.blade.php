@@ -40,6 +40,26 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <div class="form-group">
+                                <label for="price">* Quantity</label>
+                                <input require="true" type="floatval" class="form-control @error('pro_quantity') is-invalid @enderror" id="pro_quantity" name="pro_quantity" placeholder="Enter quantity product" value="{{old('pro_quantity')}}">
+                            </div>
+                            @error('pro_quantity')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="price">* Featured</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="radio_img" value="false" checked> No
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="radio_img" value="true"> Yes
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="id_parent">* Category</label>
                                 <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
                                     <option value="">--- Select a category ---</option>
@@ -78,10 +98,10 @@
                                 </div>
                             </div>
                             @error('img_childent')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             @error('img_childent.*')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <div class="box box-info">
                                 <div class="box-header">

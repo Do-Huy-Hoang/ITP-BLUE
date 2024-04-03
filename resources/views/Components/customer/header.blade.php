@@ -28,7 +28,7 @@
                             <div class="dropdown">
                                 <a href="javascript:void(0);" onclick="toggleDropdown()" class="dropbtn">{{ Auth::user()->us_name }}<span id="arr">&#9660;</span></a>
                                 <div id="myDropdown" class="dropdown-content" style="display: none;">
-                                    <a class="dropdown-item" href="javascript:void(0);">
+                                    <a class="dropdown-item"href="{{ route('profile.show', ['id' => Auth::user()->id]) }}">
                                         <i class="nav-icon fa fa-address-card" aria-hidden="true"></i> Profile
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}">
@@ -55,7 +55,7 @@
             <nav class="header__menu">
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="./shop-grid.html">Shop</a></li>
+                    <li><a href="{{ route('product.showAll') }}">Shop</a></li>
                     <li><a href="javascript:void(0);">Pages</a>
                         <ul class="header__menu__dropdown">
                             <li><a href="./shop-details.html">Shop Details</a></li>

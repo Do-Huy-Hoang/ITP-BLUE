@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('pro_brand')->unullable(false);
             $table->text('pro_description')->nullable();
             $table->float('pro_price', 8, 2)->nullable(false);
+            $table->integer('pro_quantity')->default(0);
+            $table->tinyInteger('pro_status')->default(0);
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('cate_id')->on('categories');
             $table->tinyInteger('is_featured')->default(0);

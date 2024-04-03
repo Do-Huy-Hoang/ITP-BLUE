@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Categories\CategoriesController;
 use App\Http\Controllers\Admin\Permission\PermissionController;
 use App\Http\Controllers\Admin\Products\ProductsController;
+use App\Http\Controllers\Admin\Roles\RolesController;
 use App\Http\Controllers\Customer\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function (){
@@ -17,6 +18,9 @@ Route::prefix('admin')->group(function (){
         Route::post('/create',[ProductsController::class, 'create'])->name('post-products-create');
         Route::post('/update/{id}',[ProductsController::class, 'update'])->name('post-products-update');     
     });
-   
+    Route::prefix('/roles')->group(function () {
+        Route::post('/create', [RolesController::class, 'create'])->name('post-roles-create');
+        Route::post('/update/{id}', [RolesController::class, 'update'])->name('post-roles-update');
+    });
    
 });

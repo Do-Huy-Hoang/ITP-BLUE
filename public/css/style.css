@@ -775,7 +775,7 @@ ol {
 -----------------------*/
 
 .categories .container{
-	background-color: #82878f;
+	background-color: #ffffff;
 }
 
 .categories__item {
@@ -1685,7 +1685,7 @@ ol {
 }
 
 .product__details__pic__item {
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 }
 
 .product__details__pic__item img {
@@ -3490,20 +3490,21 @@ ol {
 }
 
 .overlay {
-	display: none;
-	position: absolute;
-	top: 0;
-	left: calc(100% - 25px);; 
-	width: calc(100vw - 50px); 
-	height: 100% !important;
-	max-width: 800px;
-	max-height: 453px; 
-	background-color: white;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	z-index: 9999;
-	padding: 20px; 
-	overflow-y: auto; 
+    display: none;
+    position: absolute;
+    top: 0;
+    left: calc(100% - 25px); 
+    width: calc(100vw - 50px); 
+	height: calc(100vw - 1000px); 
+    max-width: 800px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    padding: 20px; 
+    overflow-y: auto; 
+    max-height: calc(100vh - 40px);
 }
+
 li {
 	position: relative; 
 }
@@ -3632,4 +3633,55 @@ div#columns:hover figure:not(:hover) {
     }
 }
 
+ /* Pagination CSS */
+ .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+    list-style: none;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.pagination .page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.pagination .page-link:hover {
+    z-index: 2;
+    color: #0056b3;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.pagination .page-link:focus {
+    z-index: 2;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
   

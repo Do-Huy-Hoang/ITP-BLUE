@@ -2,6 +2,9 @@
 @section('title')
 <title>Home</title>
 @endsection
+@section('Css')
+
+@endsection
 @section('Js')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -24,7 +27,7 @@
 </div>
 @endsection
 @section('content')
-@include('Components.customer.hero', ['categories' => $categories])
+@include('Components.customer.hero', ['categories' => $categories,  "isBanner" => true])
 <section class="categories">
     <div class="container">
         <div class="row">

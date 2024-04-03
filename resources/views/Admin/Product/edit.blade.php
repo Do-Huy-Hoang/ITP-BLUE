@@ -41,6 +41,26 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <div class="form-group">
+                                <label for="price">* Quantity</label>
+                                <input require="true" type="floatval" class="form-control @error('pro_quantity') is-invalid @enderror" id="pro_quantity" name="pro_quantity" placeholder="Enter quantity product" value="@if($errors->has('pro_quantity')) {{old('pro_quantity')}} @else {{ $product->pro_quantity }}@endif">
+                            </div>
+                            @error('pro_quantity')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="price">* Featured</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="radio_img" value="false" {{ $product->is_featured == true ? 'checked' : '' }}> No
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="radio_img" value="true" {{ $product->is_featured == false ? 'checked' : '' }}> Yes
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="id_parent">* Category</label>
                                 <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
                                     <option value="">--- Select a category ---</option>

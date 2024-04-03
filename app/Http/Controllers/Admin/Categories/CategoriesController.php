@@ -54,7 +54,7 @@ class CategoriesController extends Controller
 
     public function edit($id, Recursive $recursive)
     {
-        $category = $this->categories::find($id);
+        $category = $this->categories::withoutTrashed()->find($id);
         $htmlOptions = $this->recursive->categoryRecursiveEdit($category->cate_parent_id, 0, '');
         return view('Admin.Category.edit', compact('category', 'htmlOptions'));
     }
@@ -95,24 +95,29 @@ class CategoriesController extends Controller
     {
         try {
             DB::beginTransaction();
+            $category = $this->categories::withoutTrashed()->find($id);
+            if (!$category) {
+                Alert::error('Update Error', 'Updated Status Error !');
+                return redirect()->route('admin-products');
+            }
             $isActive =  $request->radio_img; 
             if ($isActive === 'true') {
                 if($request->hasFile('image')){
                     $file = $request->file('image');
                     $imageData = file_get_contents($file->getRealPath());
-                    $this->categories::find($id)->update([
+                    $category->update([
                         'cate_name' => $request->cate_name,
                         'cate_parent_id	' => $request->id_parent,
                         'cate_img' =>  $imageData,
                     ]);
                 }else{
-                    $this->categories::find($id)->update([
+                    $category->update([
                         'cate_name' => $request->cate_name,
                         'cate_parent_id	' => $request->id_parent,
                     ]);
                 }         
             }else{
-                $this->categories::find($id)->update([
+                $category->update([
                     'cate_name' => $request->cate_name,
                     'cate_parent_id	' => $request->id_parent,
                     'cate_img' =>  null,
@@ -133,6 +138,11 @@ class CategoriesController extends Controller
     {
         try {
             DB::beginTransaction();
+            $category = $this->categories::withoutTrashed()->find($id);
+            if (!$category) {
+                Alert::error('Delete error', 'Category Delete Error');
+                return redirect()->route('admin-categories');
+            }
             $category_childent = $this->categories::withoutTrashed()->where('cate_parent_id', $id)->first();
             if ($category_childent !== null) {
                 Alert::error('Delete error', 'There are still sub-items that cannot be deleted!');
@@ -143,8 +153,7 @@ class CategoriesController extends Controller
                     Alert::error('Delete error', 'This category still has many products that cannot be deleted');
                     return redirect()->route('admin-categories');
                 } else {
-
-                    $this->categories::find($id)->delete();
+                    $category->delete();
                     DB::commit();
                     Alert::success('Delete Success', 'Category Delete Successfully');
                     return redirect()->route('admin-categories');
