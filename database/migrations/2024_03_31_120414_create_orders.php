@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedInteger('user_id')->nullable(true);
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('ord_user_name');
-            $table->string('ord_Dob', 20)->nullable();
             $table->string('ord_address', 150)->nullable();
             $table->string('ord_phone_no', 15);
             $table->string('ord_pay_status', 50);

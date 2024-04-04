@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Categories;
 use App\Models\Products;
 use App\Services\Recursive as Recursive;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -56,7 +57,8 @@ class CategoriesController extends Controller
     {
         $category = $this->categories::withoutTrashed()->find($id);
         $htmlOptions = $this->recursive->categoryRecursiveEdit($category->cate_parent_id, 0, '');
-        return view('Admin.Category.edit', compact('category', 'htmlOptions'));
+        $currentPage = Paginator::resolveCurrentPage();
+        return view('Admin.Category.edit', compact('category', 'htmlOptions','currentPage'));
     }
 
     public function create(CategoryAddRequets $request)
@@ -95,10 +97,11 @@ class CategoriesController extends Controller
     {
         try {
             DB::beginTransaction();
+            $page = $request->page;
             $category = $this->categories::withoutTrashed()->find($id);
             if (!$category) {
                 Alert::error('Update Error', 'Updated Status Error !');
-                return redirect()->route('admin-products');
+                return redirect()->route('admin-products', ['page' => $page]);
             }
             $isActive =  $request->radio_img; 
             if ($isActive === 'true') {
@@ -125,12 +128,12 @@ class CategoriesController extends Controller
             }
             Db::commit();
             Alert::success('Update Success', 'Category Updated Successfully');
-            return redirect()->route('admin-categories');
+            return redirect()->route('admin-categories', ['page' => $page]);
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::channel('daily')->error('Message: ' . $exception->getMessage() . ' Line :' . $exception->getLine());
             Alert::error('Update error', 'Category Updated Error !');
-            return redirect()->route('admin-categories');
+            return redirect()->route('admin-categories', ['page' => $page]);
         }
     }
 
@@ -138,32 +141,33 @@ class CategoriesController extends Controller
     {
         try {
             DB::beginTransaction();
+            $page = Paginator::resolveCurrentPage();
             $category = $this->categories::withoutTrashed()->find($id);
             if (!$category) {
                 Alert::error('Delete error', 'Category Delete Error');
-                return redirect()->route('admin-categories');
+                return redirect()->route('admin-categories', ['page' => $page]);
             }
             $category_childent = $this->categories::withoutTrashed()->where('cate_parent_id', $id)->first();
             if ($category_childent !== null) {
                 Alert::error('Delete error', 'There are still sub-items that cannot be deleted!');
-                return redirect()->route('admin-categories');
+                return redirect()->route('admin-categories', ['page' => $page]);
             } else {
                 $product_childent =  $this->products::withoutTrashed()->where('category_id', $id)->first();
                 if ($product_childent !== null) {
                     Alert::error('Delete error', 'This category still has many products that cannot be deleted');
-                    return redirect()->route('admin-categories');
+                    return redirect()->route('admin-categories', ['page' => $page]);
                 } else {
                     $category->delete();
                     DB::commit();
                     Alert::success('Delete Success', 'Category Delete Successfully');
-                    return redirect()->route('admin-categories');
+                    return redirect()->route('admin-categories', ['page' => $page]);
                 }
             }
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::channel('daily')->error('Message: ' . $exception->getMessage() . ' Line :' . $exception->getLine());
             Alert::error('Delete error', 'Category Delete Error');
-            return redirect()->route('admin-categories');
+            return redirect()->route('admin-categories', ['page' => $page]);
         }
     }
 }

@@ -30,36 +30,34 @@ class CartsController extends Controller
                 $totalAll =  $totalAll + ($item['pro_id'] * $item['pro_quantity']);
             }
         }
-        return view('Customer.Cart.cart', compact('carts', 'category', 'totalAll'));
+        return view('Customer.Carts.carts', compact('carts', 'category', 'totalAll'));
     }
     public function AddToCart($id)
     {
         try {
-            $product = $this->products::find($id);
+            $product = $this->products::withoutTrashed()->find($id);
             $cart = session()->get('cart');
             if (isset($cart[$id])) {
                 $cart[$id]['pro_quantity'] = $cart[$id]['pro_quantity'] + 1;
             } else {
+                $cate_name = $product->category->cate_name;
                 $cart[$id] = [
                     'pro_id' => $product->pro_id,
-                    'category_id ' => $product->category->cate_name,
+                    'category_id' => $cate_name,
                     'pro_img' => $product->pro_img,
                     'pro_name' => $product->pro_name,
                     'pro_price' => $product->pro_price,
                     'pro_quantity' => 1,
                 ];
             }
-            Log::info($product->category->cate_name);
+
             session()->put('cart', $cart);
             toast('Add Success','success')->autoClose(5000);;
-
             return redirect()->back();
-        } catch (\Throwable $exception) {
-            
+        } catch (\Throwable $exception) {           
             DB::rollBack();
             Log::channel('daily')->error('Message: ' . $exception->getMessage() . ' Line :' . $exception->getLine());
             toast('Add Error','error')->autoClose(5000);;
-
             return redirect()->back();
         }
     }
@@ -76,6 +74,7 @@ class CartsController extends Controller
 
     public function DeleteCart(Request $request)
     {
+        Log::info($request->pro_id);
         if ($request->pro_id) {
             $cart = session()->get('cart');
             unset($cart[$request->pro_id]);

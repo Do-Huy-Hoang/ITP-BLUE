@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Categories\CategoriesController;
+use App\Http\Controllers\Admin\Employees\EmployeesController;
 use App\Http\Controllers\Admin\Permission\PermissionController;
 use App\Http\Controllers\Admin\Products\ProductsController;
 use App\Http\Controllers\Admin\Roles\RolesController;
@@ -22,5 +23,8 @@ Route::prefix('admin')->group(function (){
         Route::post('/create', [RolesController::class, 'create'])->name('post-roles-create');
         Route::post('/update/{id}', [RolesController::class, 'update'])->name('post-roles-update');
     });
-   
+    Route::prefix('/employees')->group(function (){
+        Route::post('/create', [EmployeesController::class, 'create'])->name('post-employee-create');
+        Route::post('/update/{id}',[EmployeesController::class, 'update'])->name('post-employee-create');
+    });
 });

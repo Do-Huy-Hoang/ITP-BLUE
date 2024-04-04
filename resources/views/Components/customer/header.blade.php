@@ -28,7 +28,7 @@
                             <div class="dropdown">
                                 <a href="javascript:void(0);" onclick="toggleDropdown()" class="dropbtn">{{ Auth::user()->us_name }}<span id="arr">&#9660;</span></a>
                                 <div id="myDropdown" class="dropdown-content" style="display: none;">
-                                    <a class="dropdown-item"href="{{ route('profile.show', ['id' => Auth::user()->id]) }}">
+                                    <a class="dropdown-item" href="{{ route('profile.show', ['id' => Auth::user()->id]) }}">
                                         <i class="nav-icon fa fa-address-card" aria-hidden="true"></i> Profile
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}">
@@ -73,7 +73,25 @@
             <div class="header__cart">
                 <ul>
                     <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                    <li><a href="javascript:void(0);"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                    <li>
+                        <a href="{{route('cart')}}">
+                            <i class="fa fa-shopping-bag"></i>
+                            <span>
+                                @php
+                                    $count = 0;
+                                    $a = session()->get('cart');
+                                        if ($a == ''){
+                                            $count = 0;
+                                        }else{
+                                            foreach ($a as $item){
+                                            $count++;
+                                            }
+                                        }
+                                    echo $count;
+                                @endphp
+                            </span>
+                        </a>
+                    </li>
                 </ul>
                 <div class="header__cart__price">item: <span>$150.00</span></div>
             </div>

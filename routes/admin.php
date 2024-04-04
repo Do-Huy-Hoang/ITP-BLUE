@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Categories\CategoriesController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Employees\EmployeesController;
 use App\Http\Controllers\Admin\Permission\PermissionController;
 use App\Http\Controllers\Admin\Profile\ProfileController;
 use App\Http\Controllers\Admin\Products\ProductsController;
@@ -30,6 +31,14 @@ Route::prefix('admin')->group(function (){
         Route::get('/add', [RolesController::class, 'add'])->name('admin-roles-add');
         Route::get('/edit/{id}', [RolesController::class, 'edit'])->name('admin-roles-edit');
         Route::get('/delete/{id}', [RolesController::class, 'delete'])->name('admin-roles-delete');
+    });
+    //Employee
+    Route::prefix('/employees')->group(function (){
+        Route::get('/', [EmployeesController::class, 'index'])->name('admin-employees');
+        Route::get('/add', [EmployeesController::class, 'add'])->name('admin-employees-add');
+        Route::get('/edit/{id}', [EmployeesController::class, 'edit'])->name('admin-employees-edit');
+        Route::post('/update/{id}',[EmployeesController::class, 'update'])->name('admin-employees-update');
+        Route::get('/delete/{id}',[EmployeesController::class, 'delete'])->name('admin-employees-delete');
     });
 
     Route::prefix('/profile')->group(function () {

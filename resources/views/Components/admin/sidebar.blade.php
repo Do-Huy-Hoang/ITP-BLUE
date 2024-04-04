@@ -11,14 +11,20 @@
             </li>
             <li>
                 <a href="{{route('admin-products')}}">
-                    <i class="nav-icon fa fa-list-alt " aria-hidden="true"></i>
+                    <i class="nav-icon fa fa-product-hunt" aria-hidden="true"></i>
                     <span>Products</span>
                 </a>
             </li>
             <li>
                 <a href="{{route('admin-roles')}}">
-                    <i class="nav-icon fa fa-list-alt " aria-hidden="true"></i>
-                    <span>Roles</span>
+                    <i class="nav-icon fa fa-sitemap" aria-hidden="true"></i>
+                    <span>List of Roles</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin-employees')}}">
+                    <i class="nav-icon fa fa-user-md" aria-hidden="true"></i>
+                    <span>List of employee</span>
                 </a>
             </li>
             <li>

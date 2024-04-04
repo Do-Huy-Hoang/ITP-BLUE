@@ -79,10 +79,10 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin-categories-edit', ['id'=>$item->cate_id]) }}" class="btn btn-success" role="button">
+                                        <a href="{{ route('admin-categories-edit', ['id'=>$item->cate_id,'page' => $categories->currentPage()]) }}" class="btn btn-success" role="button">
                                             <i class="fa fa-fw fa-edit"></i>
                                         </a>
-                                        <a href="{{ route('admin-categories-delete', ['id' => $item->cate_id]) }}" class="btn btn-danger" role="button" onclick ="confirmDelete(event,this)">
+                                        <a href="{{ route('admin-categories-delete', ['id' => $item->cate_id, 'page' => $categories->currentPage()]) }}" class="btn btn-danger" role="button" onclick ="confirmDelete(event,this)">
                                             <i class="fa fa-fw fa-trash-o"></i>
                                         </a>
                                     </td>
@@ -99,7 +99,7 @@
                                 </tr>
                             </thead>
                         </table>
-                        {{ $categories->links()}}
+                        {{ $categories->appends(Request::except('page'))->links()}}
                     </div>
                     <!-- /.box-body -->
 

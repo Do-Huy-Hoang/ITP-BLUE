@@ -6,6 +6,7 @@ use App\Http\Controllers\Customer\Auth\OTPController;
 use App\Http\Controllers\Customer\Auth\RegisterController;
 use App\Http\Controllers\Customer\Carts\CartsController;
 use App\Http\Controllers\Customer\IndexController;
+use App\Http\Controllers\Customer\Order\OrderController;
 use App\Http\Controllers\Customer\Profile\ProfileController;
 use App\Http\Controllers\Customer\Shop\ProductsController;
 use App\Http\Controllers\ErrorController;
@@ -27,13 +28,16 @@ Route::prefix('/')->group(function (){
     Route::prefix('cart')->group(function () {
         Route::get('/', [CartsController::class, 'index'])->name('cart');
         Route::get('/add-to-cart/{id}', [CartsController::class, 'AddToCart'])->name('cart-add');
-        Route::get('/update-cart/', [CartsController::class, 'UpdateCart'])->name('cart-update');
-        Route::get('/delete-cart/', [CartsController::class, 'DeleteCart'])->name('cart-delete');
-        // Route::get('/order/', [IndexController::class, 'index'])->name('');
-        // Route::post('/create-order/{id}', [IndexController::class, 'index'])->name('');
+        Route::get('/update-cart', [CartsController::class, 'UpdateCart'])->name('cart-update');
+        Route::get('/delete-cart', [CartsController::class, 'DeleteCart'])->name('cart-delete');
     });
+    Route::prefix('order')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('order');
+    });
+ 
+
     Route::prefix('profile')->group(function () {
         Route::get('/{id}', [ProfileController::class, 'index'])->name('profile.show');
-        Route::post('/profile/{id}', [ProfileController::class, 'profileupdate'])->name('profile.update');
+        Route::get('/{id}/orders/{orderId}', [ProfileController::class, 'showOrderDetails'])->name('orders.showDetail');
     });
 });

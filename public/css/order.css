@@ -1,0 +1,50 @@
+.md-form.md-outline input {
+    border-radius: 0; 
+    border-width: 0 0 1px 0;
+    border-color: #bdbdbd; 
+}
+
+.md-form.md-outline label {
+    color: #000; 
+}
+
+.btn-primary {
+    background-color: #007bff; 
+    border-color: #007bff; 
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; 
+    border-color: #0056b3; 
+}
+.table-responsive{
+    height: 300px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px; 
+}
+
+th,
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2; 
+}
+
+.card.mb-4 {
+    margin-bottom: 0;
+}
+
+.dark-grey-text:hover {
+    color: #000; 
+}
+.dark-grey-text:focus {
+    color: #000; 
+}

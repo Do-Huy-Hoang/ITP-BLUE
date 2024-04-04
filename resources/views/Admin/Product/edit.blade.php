@@ -168,6 +168,7 @@
                             @error('pro_description')
                             <div class="alert alert-danger" role="alert">{{ $message }}</div>
                             @enderror
+                            <input type="hidden" name="page" value="{{ $currentPage }}">
                             <button class="btn btn-success" type="submit">Update</button>
                         </form>
                     </div>

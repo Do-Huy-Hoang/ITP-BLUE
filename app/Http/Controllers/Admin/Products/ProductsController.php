@@ -10,6 +10,7 @@ use App\Models\ProductImage;
 use App\Models\Products;
 use App\Services\Recursive as Recursive;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -35,6 +36,7 @@ class ProductsController extends Controller
             } else {
                 $products = $this->products::withoutTrashed()->select('pro_id', 'pro_name', 'pro_price', 'pro_img', 'category_id', 'pro_status')->latest('created_at')->paginate(20);
             }
+        
             return view('Admin.Product.product', compact('products'));
         } catch (\Throwable $exception) {
             $products = [];
@@ -92,13 +94,16 @@ class ProductsController extends Controller
     {
         $product = $this->products::withoutTrashed()->find($id);
         $htmlOptions = $this->recursive->categoryRecursiveEdit($product->category_id);
-        return view('Admin.product.edit', compact('htmlOptions', 'product'));
+        $currentPage = Paginator::resolveCurrentPage();
+        return view('Admin.product.edit', compact('htmlOptions', 'product', 'currentPage'));
     }
 
     public function update($id, ProductUpdateResquest $request)
     {
         try {
             DB::beginTransaction();
+            $page = $request->page;
+            Log::info($page);
             $product = $this->products::withoutTrashed()->find($id);
             if (!$product) {
                 Alert::error('Update Error', 'Updated Status Error !');
@@ -151,12 +156,12 @@ class ProductsController extends Controller
 
             DB::commit();
             Alert::success('Update Success', 'Product Updated Successfully');
-            return redirect()->route('admin-products');
+            return redirect()->route('admin-products', ['page' => $page]);
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::channel('daily')->error('Message: ' . $exception->getMessage() . ' Line :' . $exception->getLine());
             Alert::error('Update error', 'Product Updated Error !');
-            return redirect()->route('admin-products');
+            return redirect()->route('admin-products', ['page' => $page]);
         }
     }
 
@@ -164,32 +169,34 @@ class ProductsController extends Controller
     {
         try {
             DB::beginTransaction();
+                $page = Paginator::resolveCurrentPage();
                 $product = $this->products::withoutTrashed()->find($id);
                 if (!$product) {
                     Alert::error('Update Error', 'Updated Status Error !');
-                    return redirect()->route('admin-products');
+                    return redirect()->route('admin-products', ['page' => $page]);
                 }
                 if($product->pro_quantity <= 0){
                     Alert::error('Update Error', 'Updated Status Error !');
-                    return redirect()->route('admin-products');
+                    return redirect()->route('admin-products', ['page' => $page]);
                 }
                 $product->update([
                     'pro_status' => !$product->pro_status,
                 ]);
             DB::commit();
             Alert::success('Update Success', 'Updated Status Successfully');
-            return redirect()->route('admin-products');
+            return redirect()->route('admin-products', ['page' => $page]);
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::channel('daily')->error('Message: ' . $exception->getMessage() . ' Line :' . $exception->getLine());
             Alert::error('Update error', 'Updated Status Error !');
-            return redirect()->route('admin-products');
+            return redirect()->route('admin-products', ['page' => $page]);
         }
     }
 
     public function delete($id){
         try {
             DB::beginTransaction();
+            $page = Paginator::resolveCurrentPage();
             $hasDeliveringOrders = Orders::whereHas('order_detail', function ($query) use ($id) {
                 $query->where('ordd_product_id', $id)
                       ->where('ord_status', 'delivering');
@@ -197,18 +204,18 @@ class ProductsController extends Controller
     
             if ($hasDeliveringOrders) {
                 Alert::error('Delete error', 'Product Delete Error');
-                return redirect()->route('admin-products');
+                return redirect()->route('admin-products', ['page' => $page]);
             }
             $this->products::find($id)->delete();
     
             DB::commit();
             Alert::success('Delete Success', 'Product Delete Successfully');
-            return redirect()->route('admin-products');
+            return redirect()->route('admin-products', ['page' => $page]);
         } catch (\Exception $exception){
             DB::rollBack();
             Log::channel('daily')->error('Message: '.$exception->getMessage().' Line :'.$exception->getLine());
             Alert::error('Delete error', 'Product Delete Error');
-            return redirect()->route('admin-products');
+            return redirect()->route('admin-products', ['page' => $page]);
         }
     }
 }

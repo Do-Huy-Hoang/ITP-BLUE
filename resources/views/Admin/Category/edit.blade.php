@@ -64,6 +64,7 @@
                                     {!! $htmlOptions !!}
                                 </select>
                             </div>
+                            <input type="hidden" name="page" value="{{ $currentPage }}">
                             <button class="btn btn-success" type="submit">Update</button>
                         </form>
                     </div>
