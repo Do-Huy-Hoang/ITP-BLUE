@@ -1,66 +1,147 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<a href="https://github.com/Do-Huy-Hoang/ITP-BLUE.git"> <h1 align="center">ITP BLUE</h1></a>
+<p align="center"><a href="https://github.com/josuapsianturi/velflix/blob/main/LICENSE"><img src="https://poser.pugx.org/cpriego/valet-linux/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## About
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+IPT BLUE is a Laravel clone project using TALL stack  [Laravel](https://laravel.com/).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+> **Note**
+> Work in Progress
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Table of Contents
 
-## Learning Laravel
+* [Screenshots](#screenshots)
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Testing](#testing)
+* [Contributing](#contributing)
+* [License](#license)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<a name="screenshots"></a>
+## Screenshots
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+![home page](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/home.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+see full page [here](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/home-full-page.png)
 
-## Laravel Sponsors
+![movies header](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/movies-header.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+![movies](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/movies.png)
 
-### Premium Partners
+see full page [here](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/movies-full-page.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+![Detail movies](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/details-movie.png)
 
+<a name="requirements"></a>
+## Requirements
+
+Package | Version
+--- | ---
+[Node](https://nodejs.org/en/) | V14.19.1+
+[Npm](https://nodejs.org/en/)  | V6.14.16+ 
+[Composer](https://getcomposer.org/)  | V2.2.6+
+[Php](https://www.php.net/)  | V8.0.17+
+[Mysql](https://www.mysql.com/)  |V 8.0.27+
+
+<a name="installation"></a>
+## Installation
+
+> **Warning**
+> Make sure to follow the requirements first.
+
+Here is how you can run the project locally:
+1. Clone this repo
+    ```sh
+    git clone https://github.com/Do-Huy-Hoang/ITP-BLUE.git
+    ```
+
+1. Go into the project root directory
+    ```sh
+    cd ITP-BLUE
+    ```
+
+1. Copy .env.example file to .env file
+    ```sh
+    cp .env.example .env
+    ```
+1. Go to `.env` file 
+    - set database credentials (`DB_DATABASE=itpblue`, `DB_USERNAME=root`, `DB_PASSWORD=`)
+    > Make sure to follow your database username and password
+
+1. Install PHP dependencies 
+    ```sh
+    composer install
+    ```
+
+1. Generate key 
+    ```sh
+    php artisan key:generate
+    ```
+    
+1. Run migration and seeder
+    ```
+    php artisan migrate --seed
+    ```
+    * Terminal will display a notification:
+         The database 'itpblue' does not exist on the 'mysql' connection.  
+            Would you like to create it? (yes/no) []
+
+     > yes
+
+1. Run server 
+    > for valet users visit `velflix.test` in your favorite browser
+   
+    ```sh
+    php artisan serve
+    ```  
+
+1. Visit `localhost:8000` in your favorite browser.     
+
+    > Make sure to follow your Laravel local Development Environment.
+    
+## Testing
+
+### <a href="https://pestphp.com/">Pest</a>
+1. To run PHP testing for Laravel
+    > **Warning**
+    > Every time you run testing, you should run `php artisan db:seed` first
+
+```sh
+vendor/bin/pest
+```
+
+### <a href="https://www.cypress.io/">Cypress</a>
+
+
+2. To run E2E testing
+```sh
+npx cypress run
+```
+
+### <a href="https://laravel.com/docs/9.x/pint">Laravel Pint</a>
+
+3. To run coding style checks
+```sh
+vendor/bin/pint
+```
+### <a href="https://psalm.dev/">Laravel Psalm</a>
+
+4. To run static analysis with Psalm
+```sh
+vendor/bin/psalm
+```
+### <a href="https://github.com/nunomaduro/larastan">Larastan </a>
+
+5. To run static analysis with PHPStan
+```sh
+vendor/bin/phpstan analyse
+```
+
+<a name="contributing"></a>
 ## Contributing
+Pull requests are welcome.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
+<a name="license"></a>
 ## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Velflix is an open-sourced software licensed under [the MIT license](https://github.com/josuapsianturi/velflix/blob/main/LICENSE)
