@@ -21,9 +21,9 @@ IPT BLUE is a Laravel clone project using TALL stack  [Laravel](https://laravel.
 <a name="screenshots"></a>
 ## Screenshots
 
-![home page](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/home.png)
+![home page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
 
-see full page [here](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/home-full-page.png)
+see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
 
 ![movies header](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/movies-header.png)
 
