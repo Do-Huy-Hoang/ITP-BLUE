@@ -141,7 +141,17 @@ Here is how you can run the project locally:
     > Make sure to follow your Laravel local Development Environment.
     
 ## Account
-Pull requests are welcome.
+    > Customer
+    > Email: hd6112002@gmail.com
+    > Password: Hoang@611
+
+    > Admin
+    > Email: hd6112002a@gmail.com
+    > Password: Hoang@611
+
+    > The account has fewer permissions than an administrator
+    > Email: ak54@gmail.com
+    > Password: Hoang@611
 
 ## Contributing
 Pull requests are welcome.
