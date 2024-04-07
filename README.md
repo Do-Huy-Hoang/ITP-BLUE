@@ -77,7 +77,21 @@ Here is how you can run the project locally:
     cp .env.example .env
     ```
 1. Go to `.env` file 
-    - set database credentials (`DB_DATABASE=itpblue`, `DB_USERNAME=root`, `DB_PASSWORD=`)
+    - set database  
+      `DB_DATABASE=itpblue
+       DB_USERNAME=root
+       DB_PASSWORD=`
+    - set mail credentials 
+      `MAIL_DRIVER=smtp
+       MAIL_HOST=smtp.gmail.com
+       MAIL_PORT=587
+       MAIL_USERNAME=your email
+       MAIL_PASSWORD=password
+       MAIL_ENCRYPTION=tls
+      `
+      - set google api  credentials 
+        `GOOGLE_MAP_KEY=google api key`
+        
     > Make sure to follow your database username and password
 
 1. Install PHP dependencies 
