@@ -20,19 +20,30 @@ IPT BLUE is a Laravel clone project using TALL stack  [Laravel](https://laravel.
 
 <a name="screenshots"></a>
 ## Screenshots
-
+**Customer**
 ![home page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
-
 see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
 
-![movies header](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/movies-header.png)
+![shop page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/2#issue-2229793768)
 
-![movies](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/movies.png)
+![cart page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/3#issue-2229794000)
 
-see full page [here](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/movies-full-page.png)
+![order page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/4#issue-2229794094)
 
-![Detail movies](https://raw.githubusercontent.com/josuapsianturi/velflix/main/public/img/details-movie.png)
+![login page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/6#issue-2229794300)
 
+![resgister page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/7#issue-2229794400)
+
+![fotgot password page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/8#issue-2229794629)
+
+![profile page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/5#issue-2229794216)
 <a name="requirements"></a>
 ## Requirements
 
