@@ -20,7 +20,7 @@ IPT BLUE is a Laravel clone project using TALL stack  [Laravel](https://laravel.
 
 <a name="screenshots"></a>
 ## Screenshots
-<-----------------------------------------------------------------Customer--------------------------------------------------------------------------->
+<-----------------------------------------------------------------**Customer**--------------------------------------------------------------------------->
 ![home page](https://github.com/Do-Huy-Hoang/ITP-BLUE/blob/main/public/img/git/home.png)
 see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
 
