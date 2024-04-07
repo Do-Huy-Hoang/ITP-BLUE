@@ -141,7 +141,7 @@ Here is how you can run the project locally:
     > Make sure to follow your Laravel local Development Environment.
     
 ## Account
-    > Custommer
+    > Customer
     > Email: hd6112002@gmail.com
     > Password: Hoang@611
 
