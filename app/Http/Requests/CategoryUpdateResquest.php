@@ -20,7 +20,9 @@ class CategoryUpdateResquest extends FormRequest
         return [
             'cate_name' => [
                 'required',
-                Rule::unique('categories')->ignore($id,'cate_id'),
+                 Rule::unique('categories')->ignore($id, 'cate_id')->where(function ($query) use ($cate_parent_id) {
+                    $query->where('cate_parent_id', $cate_parent_id);
+                }),
                 'min:2',
                 'max:255'
             ]
