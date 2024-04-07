@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Customer\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Services\OtpService;
+use App\Services\EmailService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +16,7 @@ class RegisterController extends Controller
 {
     protected $checkSentOtp, $checkVerify;
     protected $otpService;
-    public function __construct(OtpService $otpService)
+    public function __construct(EmailService $otpService)
     {
         $this->otpService = $otpService;
     }
@@ -86,7 +86,11 @@ class RegisterController extends Controller
                     $user->roles()->sync(4);
                     DB::commit();
                     Auth::login($user);
-                    return view('Customer.Auth.message')->with('title', 'Register success');
+                    return view('Customer.Auth.message')->with([
+                        'title' => 'Login success',
+                        'message' => 'Welcome back, user!',
+                        'admin' => false,
+                    ]);
                 } else {
                     return redirect()->back()->withInput()->with('error_message', 'Invalid OTP');
                 }

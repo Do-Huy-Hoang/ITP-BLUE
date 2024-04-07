@@ -22,6 +22,12 @@ class PermissionController extends Controller
     public function create(Request $request){
         try {
             DB::beginTransaction();
+                $perName = $request->module_parent;
+                $check = $this->permission::where('per_name', $perName)->first();;
+                if($check){
+                    Alert::error('Create error', 'Permission already exist!');
+                    return redirect()->route('admin-permission');
+                }
                 $permission = $this->permission::create([
                     'per_name'=> $request->module_parent,
                     'per_display_name'=> $request->module_parent,
@@ -32,6 +38,7 @@ class PermissionController extends Controller
                         'per_name'=> $value,
                         'per_display_name'=> $value,
                         'per_parent_id'=>$permission->per_id,
+                        'key_code' => $request->module_parent . '_' . $value
                     ]);
                 }
             DB::commit();

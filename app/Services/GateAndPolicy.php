@@ -5,55 +5,40 @@ use Illuminate\Support\Facades\Gate;
 
 class GateAndPolicy{
     public function setGateAndPolicyAccess(){
-        $this->defineGateCategory();
-        $this->defineGateProduct();
-        $this->defineGateSlider();
-        $this->defineGateSettings();
-        $this->defineGateUser();
-        $this->defineGateRole();
+        $this->defineGateCategories();
+        $this->defineGateProducts();
+        $this->defineGateEmployees();
+        $this->defineGateRoles();
         $this->defineGatePermission();
         $this->defineGateCustomer();
-        $this->defineGateOrder();
+        $this->defineGateOrders();
     }
-    public function defineGateCategory(){
-        Gate::define('category-list', 'App\Policies\CategoryPolicy@view');
-        Gate::define('category-add', 'App\Policies\CategoryPolicy@create');
-        Gate::define('category-edit', 'App\Policies\CategoryPolicy@update');
-        Gate::define('category-delete', 'App\Policies\CategoryPolicy@delete');
-    }
-
-    public function defineGateProduct(){
-        Gate::define('product-list', 'App\Policies\ProductPolicy@view');
-        Gate::define('product-add', 'App\Policies\ProductPolicy@create');
-        Gate::define('product-edit', 'App\Policies\ProductPolicy@update');
-        Gate::define('product-delete', 'App\Policies\ProductPolicy@delete');
+    public function defineGateCategories(){
+        Gate::define('categories-list', 'App\Policies\CategoriesPolicy@view');
+        Gate::define('categories-add', 'App\Policies\CategoriesPolicy@create');
+        Gate::define('categories-edit', 'App\Policies\CategoriesPolicy@update');
+        Gate::define('categories-delete', 'App\Policies\CategoriesPolicy@delete');
     }
 
-    public function defineGateSlider(){
-        Gate::define('slider-list', 'App\Policies\SliderPolicy@view');
-        Gate::define('slider-add', 'App\Policies\SliderPolicy@create');
-        Gate::define('slider-edit', 'App\Policies\SliderPolicy@update');
-        Gate::define('slider-delete', 'App\Policies\SliderPolicy@delete');
+    public function defineGateProducts(){
+        Gate::define('products-list', 'App\Policies\ProductsPolicy@view');
+        Gate::define('products-add', 'App\Policies\ProductsPolicy@create');
+        Gate::define('products-edit', 'App\Policies\ProductsPolicy@update');
+        Gate::define('products-delete', 'App\Policies\ProductsPolicy@delete');
     }
 
-    public function defineGateSettings(){
-        Gate::define('settings-list', 'App\Policies\SettingsPolicy@view');
-        Gate::define('settings-add', 'App\Policies\SettingsPolicy@create');
-        Gate::define('settings-edit', 'App\Policies\SettingsPolicy@update');
-        Gate::define('settings-delete', 'App\Policies\SettingsPolicy@delete');
+    public function defineGateEmployees(){
+        Gate::define('employees-list', 'App\Policies\EmployeesPolicy@view');
+        Gate::define('employees-add', 'App\Policies\EmployeesPolicy@create');
+        Gate::define('employees-edit', 'App\Policies\EmployeesPolicy@update');
+        Gate::define('employees-delete', 'App\Policies\EmployeesPolicy@delete');
     }
 
-    public function defineGateUser(){
-        Gate::define('user-list', 'App\Policies\UserPolicy@view');
-        Gate::define('user-edit', 'App\Policies\UserPolicy@update');
-        Gate::define('user-delete', 'App\Policies\UserPolicy@delete');
-    }
-
-    public function defineGateRole(){
-        Gate::define('role-list', 'App\Policies\RolePolicy@view');
-        Gate::define('role-add', 'App\Policies\RolePolicy@create');
-        Gate::define('role-edit', 'App\Policies\RolePolicy@update');
-        Gate::define('role-delete', 'App\Policies\RolePolicy@delete');
+    public function defineGateRoles(){
+        Gate::define('roles-list', 'App\Policies\RolesPolicy@view');
+        Gate::define('roles-add', 'App\Policies\RolesPolicy@create');
+        Gate::define('roles-edit', 'App\Policies\RolesPolicy@update');
+        Gate::define('roles-delete', 'App\Policies\RolesPolicy@delete');
     }
 
     public function defineGatePermission(){
@@ -64,7 +49,7 @@ class GateAndPolicy{
         Gate::define('customer-list', 'App\Policies\CustomerPolicy@view');
     }
 
-    public function defineGateOrder(){
+    public function defineGateOrders(){
         Gate::define('orders-list', 'App\Policies\OrdersPolicy@view');
         Gate::define('orders-edit', 'App\Policies\OrdersPolicy@update');
     }

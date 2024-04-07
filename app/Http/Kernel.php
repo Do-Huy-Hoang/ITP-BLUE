@@ -55,6 +55,7 @@ class Kernel extends HttpKernel
     protected $middlewareAliases = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'cumstomer.page' => \App\Http\Middleware\CustomerPageAccess::class,
+        'admin.page' => \App\Http\Middleware\AdminPageAccess::class,
         'auth.page' => \App\Http\Middleware\AuthPageAccess::class,
         'otp.page' => \App\Http\Middleware\OTPPageAccess::class,
         'reset.password.page' => \App\Http\Middleware\ResetPassPageAccess::class,

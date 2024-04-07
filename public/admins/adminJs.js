@@ -52,6 +52,34 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.style.overflow = 'auto';
         });
     }
+
+    var deliveryOrderBtns = document.querySelectorAll('.change-status');
+
+    if(deliveryOrderBtns){
+        deliveryOrderBtns.forEach(function(btn) {
+            btn.addEventListener('click', function(event) {
+                // Ngăn chặn hành động mặc định của thẻ a
+                event.preventDefault();
+                
+                // Hiển thị cửa sổ xác nhận
+                Swal.fire({
+                    title: "Are you sure to deliver this order?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#13d146",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, deliver it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Nếu người dùng xác nhận, chuyển hướng đến route cần thiết
+                        window.location.href = btn.href;
+                    }
+                });
+            });
+        });
+    }
+    
 });
 function confirmDelete(event, id) {
     event.preventDefault();

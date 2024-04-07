@@ -14,39 +14,31 @@
                         @endforeach
                     </ul>
                     @foreach ($categories->where('cate_parent_id', 0) as $parent)
-                        <div id="overlay{{ $parent->cate_id}}" class="overlay">
-                            <h2>{{ $parent->cate_name }}</h2>
-                            <div class="row-md-4">                              
-                                    <div class="col-md-4">
-                                        <ul class="list-unstyled">
-                                        @foreach ($categories->where('cate_parent_id', $parent->cate_id) as $category)
-                                            <li>
-                                                <a href="{{ route('product.show', ['id' => $category->cate_id]) }}">
-                                                    <figure style="text-align: center;">
-                                                        <img src="data:image/jpeg;base64,{{ base64_encode($category->image) }}"
-                                                            style=" display: block; margin: auto;" height="120px" width="150px">
-                                                        <figcaption style="text-align: center;">
-                                                            {{ $category->cate_name }}</figcaption>
-                                                    </figure>
-                                                </a>
-                                            </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>  
+                    <div id="overlay{{ $parent->cate_id }}" class="overlay">
+                        <h2>{{ $parent->cate_name }}</h2>
+                        <div class="container">
+                            <div class="row">
+                                @foreach ($categories->where('cate_parent_id', $parent->cate_id) as $category)
+                                    <div class="col-lg-4 col-md-6 mb-4">
+                                        <a href="{{ route('product.show', ['id' => $category->cate_id]) }}">
+                                            <figure style="text-align: center;">
+                                                <img src="data:image/jpeg;base64,{{ base64_encode($category->cate_img) }}" style="display: block; margin: auto;" height="120px" width="150px">
+                                                <figcaption style="text-align: center;">{{ $category->cate_name }}</figcaption>
+                                            </figure>
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+                @endforeach
                 </div>
             </div>
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <form action="#">
-                            <div class="hero__search__categories">
-                                All Categories
-                                <span class="arrow_carrot-down"></span>
-                            </div>
-                            <input type="text" placeholder="What do yo u need?" style="width: 70%;">
+                        <form action="{{ route('product.search') }}" method="GET">
+                            <input type="text" name="query" placeholder="Search products..." style="width: 70%;">
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>
                     </div>
@@ -55,7 +47,7 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
+                            <h5>+84 19008198</h5>
                             <span>support 24/7 time</span>
                         </div>
                     </div>

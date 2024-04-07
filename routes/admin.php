@@ -3,189 +3,56 @@
 use App\Http\Controllers\Admin\Categories\CategoriesController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Employees\EmployeesController;
+use App\Http\Controllers\Admin\Orders\OrdersController;
 use App\Http\Controllers\Admin\Permission\PermissionController;
 use App\Http\Controllers\Admin\Profile\ProfileController;
 use App\Http\Controllers\Admin\Products\ProductsController;
 use App\Http\Controllers\Admin\Roles\RolesController;
 use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function (){
-    Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::get('/', [AdminController::class, 'index'])->middleware('admin.page')->name('admin');
 
     Route::prefix('/categories')->group(function (){
-        Route::get('/', [CategoriesController::class, 'index'])->name('admin-categories');
-        Route::get('/add', [CategoriesController::class, 'add'])->name('admin-categories-add');
-        Route::get('/edit/{id}',[CategoriesController::class, 'edit'])->name('admin-categories-edit');
-        Route::get('/delete/{id}',[CategoriesController::class, 'delete'])->name('admin-categories-delete'); 
+        Route::get('/', [CategoriesController::class, 'index'])->middleware('can:categories-list')->name('admin-categories');
+        Route::get('/add', [CategoriesController::class, 'add'])->middleware('can:categories-add')->name('admin-categories-add');
+        Route::get('/edit/{id}',[CategoriesController::class, 'edit'])->middleware('can:categories-edit')->name('admin-categories-edit');
+        Route::get('/delete/{id}',[CategoriesController::class, 'delete'])->middleware('can:categories-delete')->name('admin-categories-delete'); 
     });
     //Product
     Route::prefix('/products')->group(function (){
-        Route::get('/', [ProductsController::class, 'index'])->name('admin-products');
-        Route::get('/add',[ProductsController::class, 'add'])->name('admin-products-add');
-        Route::get('/edit/{id}',[ProductsController::class, 'edit'])->name('admin-products-edit');
-        Route::get('/delete/{id}',[ProductsController::class, 'delete'])->name('admin-products-delete');  
-        Route::get('/change-status/{id}',[ProductsController::class, 'changeStatus'])->name('admin-products-change-status');  
+        Route::get('/', [ProductsController::class, 'index'])->middleware('can:products-list')->name('admin-products');
+        Route::get('/add',[ProductsController::class, 'add'])->middleware('can:products-add')->name('admin-products-add');
+        Route::get('/edit/{id}',[ProductsController::class, 'edit'])->middleware('can:products-edit')->name('admin-products-edit');
+        Route::get('/delete/{id}',[ProductsController::class, 'delete'])->middleware('can:products-list')->name('admin-products-delete');  
+        Route::get('/change-status/{id}',[ProductsController::class, 'changeStatus'])->middleware('can:categories-delete')->name('admin-products-change-status');  
     });
     //Role
     Route::prefix('/roles')->group(function () {
-        Route::get('/', [RolesController::class, 'index'])->name('admin-roles');
-        Route::get('/add', [RolesController::class, 'add'])->name('admin-roles-add');
-        Route::get('/edit/{id}', [RolesController::class, 'edit'])->name('admin-roles-edit');
-        Route::get('/delete/{id}', [RolesController::class, 'delete'])->name('admin-roles-delete');
+        Route::get('/', [RolesController::class, 'index'])->middleware('can:roles-list')->name('admin-roles');
+        Route::get('/add', [RolesController::class, 'add'])->middleware('can:roles-add')->name('admin-roles-add');
+        Route::get('/edit/{id}', [RolesController::class, 'edit'])->middleware('can:roles-edit')->name('admin-roles-edit');
+        Route::get('/delete/{id}', [RolesController::class, 'delete'])->middleware('can:roles-delete')->name('admin-roles-delete');
     });
     //Employee
     Route::prefix('/employees')->group(function (){
-        Route::get('/', [EmployeesController::class, 'index'])->name('admin-employees');
-        Route::get('/add', [EmployeesController::class, 'add'])->name('admin-employees-add');
-        Route::get('/edit/{id}', [EmployeesController::class, 'edit'])->name('admin-employees-edit');
-        Route::post('/update/{id}',[EmployeesController::class, 'update'])->name('admin-employees-update');
-        Route::get('/delete/{id}',[EmployeesController::class, 'delete'])->name('admin-employees-delete');
+        Route::get('/', [EmployeesController::class, 'index'])->middleware('can:employees-list')->name('admin-employees');
+        Route::get('/add', [EmployeesController::class, 'add'])->middleware('can:employees-add')->name('admin-employees-add');
+        Route::get('/edit/{id}', [EmployeesController::class, 'edit'])->middleware('can:employees-edit')->name('admin-employees-edit');
+        Route::get('/delete/{id}',[EmployeesController::class, 'delete'])->middleware('can:employees-delete')->name('admin-employees-delete');
     });
 
     Route::prefix('/profile')->group(function () {
         Route::get('/', [ProfileController::class, 'index'])->name('admin-profile');
     });
-    // //Orders
-    // Route::prefix('/order')->group(function () {
-    //     Route::get('/', [
-    //         'as' => 'order_index',
-    //         'uses' => 'AdminOrderController@index',
-    //         'middleware'=>'can:orders-list'
-    //     ]);
-    //     Route::get('/view/{id}', [
-    //         'as' => 'order_view',
-    //         'uses' => 'AdminOrderController@view',
-    //     ]);
-    //     Route::get('/update/', [
-    //         'as' => 'order_update',
-    //         'uses' => 'AdminOrderController@update',
-    //         'middleware'=>'can:orders-edit'
-    //     ]);
-    // });
-    // //Sliders
-    // Route::prefix('/slider')->group(function (){
-    //     Route::get('/', [
-    //         'as' => 'slider.index',
-    //         'uses' => 'AdminSliderController@index',
-    //         'middleware'=>'can:slider-list'
-    //     ]);
-    //     Route::get('/create',[
-    //         'as' => 'slider.create',
-    //         'uses' => 'AdminSliderController@create',
-    //         'middleware'=>'can:slider-list'
-    //     ]);
-    //     Route::post('/store',[
-    //         'as' => 'slider.store',
-    //         'uses' => 'AdminSliderController@store',
-    //     ]);
-    //     Route::get('/edit/{id}', [
-    //         'as' => 'slider.edit',
-    //         'uses' => 'AdminSliderController@edit',
-    //         'middleware'=>'can:slider-list'
-    //     ]);
-    //     Route::post('/update/{id}',[
-    //         'as' => 'slider.update',
-    //         'uses' => 'AdminSliderController@update',
-    //     ]);
-    //     Route::get('/delete/{id}',[
-    //         'as' => 'slider.delete',
-    //         'uses' => 'AdminSliderController@delete',
-    //         'middleware'=>'can:slider-list'
-    //     ]);
-    // });
-    // //Settings
-    // Route::prefix('/setting')->group(function (){
-    //     Route::get('/', [
-    //         'as' => 'setting.index',
-    //         'uses' => 'AdminSettingController@index',
-    //         'middleware'=>'can:settings-list'
-    //     ]);
-    //     Route::get('/create',[
-    //         'as' => 'setting.create',
-    //         'uses' => 'AdminSettingController@create',
-    //         'middleware'=>'can:settings-add'
-    //     ]);
-    //     Route::post('/store',[
-    //         'as' => 'setting.store',
-    //         'uses' => 'AdminSettingController@store',
-    //     ]);
-    //     Route::get('/edit/{id}', [
-    //         'as' => 'setting.edit',
-    //         'uses' => 'AdminSettingController@edit',
-    //         'middleware'=>'can:settings-edit'
-    //     ]);
-    //     Route::post('/update/{id}',[
-    //         'as' => 'setting.update',
-    //         'uses' => 'AdminSettingController@update'
-    //     ]);
-    //     Route::get('/delete/{id}',[
-    //         'as' => 'setting.delete',
-    //         'uses' => 'AdminSettingController@delete',
-    //         'middleware'=>'can:settings-delete'
-    //     ]);
-    // });
-    // //user
-    // Route::prefix('/user')->group(function (){
-    //     Route::get('/', [
-    //         'as' => 'user.index',
-    //         'uses' => 'AdminUserController@index',
-
-    //     ]);
-    //     Route::get('/edit/{id}', [
-    //         'as' => 'user.edit',
-    //         'uses' => 'AdminUserController@edit',
-    //         'middleware'=>'can:user-edit'
-    //     ]);
-    //     Route::post('/update/{id}',[
-    //         'as' => 'user.update',
-    //         'uses' => 'AdminUserController@update'
-    //     ]);
-    //     Route::get('/delete/{id}',[
-    //         'as' => 'user.delete',
-    //         'uses' => 'AdminUserController@delete',
-    //         'middleware'=>'can:user-delete'
-    //     ]);
-    // });
-    // //Role
-    // Route::prefix('/roles')->group(function (){
-    //     Route::get('/', [
-    //         'as' => 'roles.index',
-    //         'uses' => 'AdminRolesController@index',
-    //         'middleware'=>'can:role-list'
-    //     ]);
-    //     Route::get('/create',[
-    //         'as' => 'roles.create',
-    //         'uses' => 'AdminRolesController@create',
-    //         'middleware'=>'can:role-add'
-    //     ]);
-    //     Route::post('/store/',[
-    //         'as' => 'roles.store',
-    //         'uses' => 'AdminRolesController@store'
-    //     ]);
-    //     Route::get('/edit/{id}', [
-    //         'as' => 'roles.edit',
-    //         'uses' => 'AdminRolesController@edit',
-    //         'middleware'=>'can:role-edit'
-    //     ]);
-    //     Route::post('/update/{id}',[
-    //         'as' => 'roles.update',
-    //         'uses' => 'AdminRolesController@update'
-    //     ]);
-    //     Route::get('/delete/{id}',[
-    //         'as' => 'roles.delete',
-    //         'uses' => 'AdminRolesController@delete',
-    //         'middleware'=>'can:role-delete'
-    //     ]);
-    // });
-    // //permission
-    Route::prefix('/permission')->group(function (){
-        Route::get('/', [PermissionController::class, 'index'])->name('admin-permission');      
+    //Orders
+    Route::prefix('/orders')->group(function () {
+        Route::get('/{action}', [OrdersController::class, 'index'])->middleware('can:orders-list')->name('admin-orders');
+        Route::get('/view/{action}/{id}', [OrdersController::class, 'edit'])->middleware('can:orders-edit')->name('admin-orders-edit');
+        Route::get('/update/{action}/{id}/{status}', [OrdersController::class, 'update'])->middleware('can:orders-edit')->name('admin-orders-update');
+        Route::get('/print/{id}', [OrdersController::class, 'print'])->middleware('can:orders-edit')->name('admin-orders-print');
     });
-    // //Customer
-    // Route::prefix('/customer')->group(function (){
-    //     Route::get('/',[
-    //         'as' => 'customer.index',
-    //         'uses' => 'AdminCustomerController@index',
-    //         'middleware'=>'can:customer-list'
-    //     ]);
-    // });
+    //permission
+    Route::prefix('/permission')->group(function (){
+        Route::get('/', [PermissionController::class, 'index'])->middleware('can:permission-add')->name('admin-permission');      
+    });
 });

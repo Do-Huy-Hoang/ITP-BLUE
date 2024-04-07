@@ -103,24 +103,14 @@
                                 </div>
                             </form>
                         </div>
-
                         <div class="tab-pane" id="timeline">
-
                         </div>
-
                         <div class="tab-pane active" id="settings">
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
-
 </div>
 @endsection

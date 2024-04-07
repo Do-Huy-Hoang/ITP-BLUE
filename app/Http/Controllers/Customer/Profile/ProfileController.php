@@ -8,6 +8,9 @@ use App\Models\Orders;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class ProfileController extends Controller
 {
@@ -15,10 +18,15 @@ class ProfileController extends Controller
 
     public function index($id)
     {
-        $user = User::withoutTrashed()->findOrFail($id);
-        $orders = Orders::withoutTrashed()->with('order_detail')->where('user_id', $id)->get(); // Load order details
-
-        return view('Customer.Profile.profile', compact('user', 'orders'));
+        try {
+            $user = User::withoutTrashed()->findOrFail($id);
+            $orders = Orders::withoutTrashed()->with('order_detail')->where('user_id', $id)->get();
+            return view('Customer.Profile.profile', compact('user', 'orders'));
+        } catch (\Throwable $exception) {
+            Log::channel('daily')->error('Message: ' . $exception->getMessage() . ' Line :' . $exception->getLine());
+            Alert::error('Error', 'Connection failed !');
+            return view('Customer.Order.order', compact('carts', 'totalAll'));
+        }
     }
 
     public function __construct(User $user)
@@ -30,19 +38,36 @@ class ProfileController extends Controller
     {
         try {
             $user = User::withoutTrashed()->findOrFail($id);
+
+            // Handle avatar update
+            if ($request->hasFile('avatar')) {
+                // Validate the uploaded file
+                $request->validate([
+                    'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation rules for image upload
+                ]);
+
+                // Get the file contents
+                $avatarContents = file_get_contents($request->file('avatar')->getRealPath());
+
+                // Update the user record with the file contents
+                $user->image = $avatarContents;
+            }
+            // Update user information
             $user->update([
-                'us_name' => $request->us_name,
-                'us_gender' => $request->us_gender,
-                'us_birthday' => $request->birthday,
-                'us_phone' => $request->us_phone,
-                'us_address' => $request->us_address,
+                'us_name' => $request->input('us_name'),
+                'us_gender' => $request->input('us_gender'),
+                'us_birthday' => $request->input('birthday'),
+                'email' => $request->input('email'),
+                'us_phone' => $request->input('us_phone'),
+                'us_address' => $request->input('us_address'),
             ]);
+
             Alert::success('Update information Success!!');
             return redirect()->route('profile.show', ['id' => $id]);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
             Alert::error('Update information Failed!!');
-            return redirect()->back()->with('error', 'Register error');
+            return redirect()->back()->with('error', 'Update error');
         }
     }
 
@@ -50,11 +75,11 @@ class ProfileController extends Controller
     {
         // Fetch user based on $id if needed
         $user = User::withoutTrashed()->findOrFail($id);
-    
+
         // Fetch order details based on $orderId
         $order = Orders::withoutTrashed()->with('order_detail')->findOrFail($orderId);
-    
+
         // Return the order details view with user and order data
-        return view('Customer.Profile.profile_order_detail.blade', compact('user', 'order'));
-    }   
+        return view('Customer.Profile.profile_order_detail', compact('user', 'order'));
+    }
 }

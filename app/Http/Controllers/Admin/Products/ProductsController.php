@@ -10,6 +10,7 @@ use App\Models\ProductImage;
 use App\Models\Products;
 use App\Services\Recursive as Recursive;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
@@ -39,8 +40,12 @@ class ProductsController extends Controller
         
             return view('Admin.Product.product', compact('products'));
         } catch (\Throwable $exception) {
-            $products = [];
-            DB::rollBack();
+            $products = new LengthAwarePaginator(
+                collect([]),
+                collect([])->count(),
+                20,
+                1
+            );
             Log::channel('daily')->error('Message: ' . $exception->getMessage() . ' Line :' . $exception->getLine());
             Alert::error('Error', 'Connection failed !');
             return view('Admin.Product.product', compact('products'));;

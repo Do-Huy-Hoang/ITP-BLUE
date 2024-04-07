@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Roles;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -29,8 +31,12 @@ class RolesController extends Controller
             }
             return view('Admin.Roles.roles', compact('roles'));
         } catch (\Throwable $exception) {
-            $roles = [];
-            DB::rollBack();
+            $roles = new LengthAwarePaginator(
+                collect([]),
+                collect([])->count(),
+                20,
+                1
+            );
             Log::channel('daily')->error('Message: ' . $exception->getMessage() . ' Line :' . $exception->getLine());
             Alert::error('Error', 'Connection failed !');
             return view('Admin.Roles.roles', compact('roles'));
@@ -39,11 +45,18 @@ class RolesController extends Controller
 
     public function add()
     {
-        $PermissonsParent = $this->permission::where('per_parent_id', 0)->get();
+        $PermissonsParent = $this->permission::where('per_parent_id', 0)->where('per_name', '!=', 'permission')->get();
         return view('Admin.Roles.add', compact('PermissonsParent'));
     }
-
-
+    
+    public function edit($id)
+    {
+        $roleCheckd = $this->roles::withoutTrashed()->find($id);
+        $PermissonsParent = $this->permission::where('per_parent_id', 0)->where('per_name', '!=', 'permission')->get();
+        $permissionChecked = $roleCheckd->permission;
+        return view('Admin.Roles.edit', compact('PermissonsParent', 'roleCheckd', 'permissionChecked'));
+    }
+    
     public function create(Request $request)
     {
         try {
@@ -62,14 +75,6 @@ class RolesController extends Controller
             Alert::error('Create error', 'Role Created Error !');
             return redirect()->route('admin-roles');
         }
-    }
-
-    public function edit($id)
-    {
-        $roleCheckd = $this->roles::find($id);
-        $PermissonsParent = $this->permission::where('per_parent_id', 0)->get();
-        $permissionChecked = $roleCheckd->permission;
-        return view('Admin.Roles.edit', compact('PermissonsParent', 'roleCheckd', 'permissionChecked'));
     }
 
     public function update($id, Request $request)

@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Customer\Carts;
+
 use App\Http\Controllers\Controller;
 use App\Models\Products;
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -22,15 +24,27 @@ class CartsController extends Controller
 
     public function index()
     {
-        $totalAll = 0;
-        $carts = session()->get('cart');
-        $category = $this->category::withoutTrashed()->select('cate_id', 'cate_name')->get();
-        if ($carts != []) {
-            foreach ($carts as $item) {
-                $totalAll =  $totalAll + ($item['pro_id'] * $item['pro_quantity']);
+        try {
+            $totalAll = 0;
+            $carts = session()->get('cart');
+            $category = $this->category::withoutTrashed()->select('cate_id', 'cate_name')->get();
+            if ($carts != []) {
+                foreach ($carts as $item) {
+                    $totalAll =  $totalAll + ($item['pro_price'] * $item['pro_quantity']);
+                }
             }
+            return view('Customer.Carts.carts', compact('carts', 'category', 'totalAll'));
+        } catch (\Throwable $exception) {
+            $category = new LengthAwarePaginator(
+                collect([]),
+                collect([])->count(),
+                20,
+                1
+            );
+            Log::channel('daily')->error('Message: ' . $exception->getMessage() . ' Line :' . $exception->getLine());
+            Alert::error('Error', 'Connection failed !');
+            return view('Customer.Carts.carts', compact('carts', 'category', 'totalAll'));
         }
-        return view('Customer.Carts.carts', compact('carts', 'category', 'totalAll'));
     }
     public function AddToCart($id)
     {
@@ -52,12 +66,11 @@ class CartsController extends Controller
             }
 
             session()->put('cart', $cart);
-            toast('Add Success','success')->autoClose(5000);;
+            toast('Add Success', 'success')->autoClose(5000);
             return redirect()->back();
-        } catch (\Throwable $exception) {           
-            DB::rollBack();
+        } catch (\Throwable $exception) {
             Log::channel('daily')->error('Message: ' . $exception->getMessage() . ' Line :' . $exception->getLine());
-            toast('Add Error','error')->autoClose(5000);;
+            toast('Add Error', 'error')->autoClose(5000);
             return redirect()->back();
         }
     }
@@ -74,7 +87,6 @@ class CartsController extends Controller
 
     public function DeleteCart(Request $request)
     {
-        Log::info($request->pro_id);
         if ($request->pro_id) {
             $cart = session()->get('cart');
             unset($cart[$request->pro_id]);

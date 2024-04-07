@@ -4,8 +4,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="header__top__left">
                     <ul>
-                        <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                        <li>Free Shipping for all Order of $99</li>
+                        <li><i class="fa fa-envelope"></i> itpblue@gmail.com</li>
                     </ul>
                 </div>
             </div>
@@ -56,44 +55,42 @@
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('product.showAll') }}">Shop</a></li>
-                    <li><a href="javascript:void(0);">Pages</a>
-                        <ul class="header__menu__dropdown">
-                            <li><a href="./shop-details.html">Shop Details</a></li>
-                            <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                            <li><a href="./checkout.html">Check Out</a></li>
-                            <li><a href="./blog-details.html">Blog Details</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="./blog.html">Blog</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
         <div class="col-lg-3">
             <div class="header__cart">
                 <ul>
-                    <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                    <li>
+                        @guest('web')
+                        @else
+                        <a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> <span>0</span></a>
+                        @endguest
+                    </li>
                     <li>
                         <a href="{{route('cart')}}">
                             <i class="fa fa-shopping-bag"></i>
                             <span>
                                 @php
                                     $count = 0;
-                                    $a = session()->get('cart');
+                                    $price = 0;
+                                        $a = session()->get('cart');
                                         if ($a == ''){
                                             $count = 0;
+                                            $price = 0;
                                         }else{
                                             foreach ($a as $item){
+                                            $price += ($item['pro_price'] * $item['pro_quantity']);
                                             $count++;
-                                            }
                                         }
-                                    echo $count;
+                                    }
+                                echo $count;
                                 @endphp
                             </span>
                         </a>
                     </li>
                 </ul>
-                <div class="header__cart__price">item: <span>$150.00</span></div>
+                <div class="header__cart__price">item: <span>{{$price}}$</span></div>
             </div>
         </div>
     </div>
@@ -109,25 +106,32 @@
     </div>
     <div class="humberger__menu__cart">
         <ul>
-            <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="javascript:void(0);"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            <li>
+                @guest('web')
+                @else
+                <a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> <span>1</span></a>
+                @endguest
+            </li>
+            <li>
+                <a href="{{route('cart')}}">
+                    <i class="fa fa-shopping-bag"></i>
+                    <span>
+                        {{$count}}
+                    </span>
+                </a>
+            </li>
         </ul>
-        <div class="header__cart__price">item: <span>$150.00</span></div>
+        <div class="header__cart__price">
+            item:
+            <span>
+                {{$price}}$
+            </span>
+        </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
             <li><a href="{{ route('home') }}">Home</a></li>
             <li><a href="./shop-grid.html">Shop</a></li>
-            <li><a href="javascript:void(0);">Pages</a>
-                <ul class="header__menu__dropdown">
-                    <li><a href="./shop-details.html">Shop Details</a></li>
-                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                    <li><a href="./checkout.html">Check Out</a></li>
-                    <li><a href="./blog-details.html">Blog Details</a></li>
-                </ul>
-            </li>
-            <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./contact.html">Contact</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>

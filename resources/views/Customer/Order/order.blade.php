@@ -33,6 +33,15 @@
                             @enderror
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                                </div>
+                                <input type="text" class="form-control @error('ord_email') is-invalid @enderror" id="ord_email" name="ord_email" placeholder="Enter phone number" aria-label="PhoneNumber"  value="@if(Auth::check()  && old('ord_email') == null){{Auth::user()->email}}@else{{old('ord_email')}}@endif">
+                            </div>
+                            @error('ord_email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
                                 </div>
                                 <input type="text" class="form-control @error('ord_phone_no') is-invalid @enderror" id="ord_phone_no" name="ord_phone_no" placeholder="Enter phone number" aria-label="PhoneNumber"  value="@if(Auth::check()  && old('ord_phone_no') == null){{Auth::user()->us_phone}}@else{{old('ord_phone_no')}}@endif">

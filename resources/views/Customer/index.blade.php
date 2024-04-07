@@ -67,7 +67,7 @@
         <div class="row featured__filter">
             <!-- Your product items here -->
             @foreach ($featuredProducts as $product)
-            <div class="col-lg-3 col-md-4 col-sm-6 featured__item {{ $product->brand }}">
+            <div class="col-lg-3 col-md-4 col-sm-6 featured__item {{ $product->pro_brand }}">
                 <div class="featured__item__pic set-bg" data-setbg="data:image/png;base64,{{ base64_encode($product->pro_img) }}">
                     <ul class="featured__item__pic__hover">
                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -119,7 +119,7 @@
                             @foreach ($chunk as $product)
                             <a href="#" class="latest-product__item">
                                 <div class="latest-product__item__pic">
-                                    <img src="data:image/png;base64,{{ base64_encode($product['pro_img']) }}" alt="{{ $product['pro_name'] }}">
+                                <img src="data:image/png;base64,{{ base64_encode($product['pro_img']) }}" >
                                 </div>
                                 <div class="latest-product__item__text">
                                     <h6>{{ $product['pro_name'] }}</h6>
@@ -132,200 +132,8 @@
                     </div>
                 </div>
             </div>
-
-
-            {{-- <div class="col-lg-4 col-md-6">
-                <div class="latest-product__text">
-                    <h4>Top Rated Products</h4>
-                    <div class="latest-product__slider owl-carousel">
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-1.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Acer Nitro 5</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-2.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Galaxy s21</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-3.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Logitech G535 LIGHTSPEED Wireless</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-1.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-2.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-3.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="col-lg-4 col-md-6">
-                <div class="latest-product__text">
-                    <h4>Review Products</h4>
-                    <div class="latest-product__slider owl-carousel">
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-1.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Acer Nitro 5</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-2.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Galaxy s21</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-3.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Logitech G535 LIGHTSPEED Wireless</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-1.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-2.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-3.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
 </section>
 <!-- Latest Product Section End -->
-
-<!-- Blog Section Begin -->
-<section class="from-blog spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title from-blog__title">
-                    <h2>From The Blog</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="img/blog/blog-1.jpg" alt="">
-                    </div>
-                    <div class="blog__item__text">
-                        <ul>
-                            <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                            <li><i class="fa fa-comment-o"></i> 5</li>
-                        </ul>
-                        <h5><a href="javascript:void(0);">Cooking tips make cooking simple</a></h5>
-                        <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="img/blog/blog-2.jpg" alt="">
-                    </div>
-                    <div class="blog__item__text">
-                        <ul>
-                            <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                            <li><i class="fa fa-comment-o"></i> 5</li>
-                        </ul>
-                        <h5><a href="javascript:void(0);">6 ways to prepare breakfast for 30</a></h5>
-                        <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="img/blog/blog-3.jpg" alt="">
-                    </div>
-                    <div class="blog__item__text">
-                        <ul>
-                            <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                            <li><i class="fa fa-comment-o"></i> 5</li>
-                        </ul>
-                        <h5><a href="javascript:void(0);">Visit the clean farm in the US</a></h5>
-                        <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 @endsection

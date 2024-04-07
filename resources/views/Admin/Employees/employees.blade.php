@@ -28,12 +28,10 @@
             List User
         </h1>
         <ol class="breadcrumb">
-            <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">list user</li>
         </ol>
-    </section>
-
-    <!-- Main content -->
+    </section>  
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
@@ -41,9 +39,11 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col-xs-4 ">
+                                @can('employees-add')
                                 <div class="button">
                                     <a href="{{ route('admin-employees-add') }}"><button class="btn btn-success btn-add">Add Employees</button></a>
                                 </div>
+                                @endcan
                             </div>
                             <div class="col-xs-8 ">
                                 <form method="GET" action="{{route('admin-employees')}}" id="form-search">
@@ -57,7 +57,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-header -->
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -77,16 +76,25 @@
                                     <td>{{ $item->email }}</td>
                                     <td>
                                         @foreach ($item->roles as $role)
-                                            {{ $role->rol_name }},
+                                        {{ $role->rol_name }}
+                                        @if (!$loop->last)
+                                        ,
+                                        @endif
                                         @endforeach
                                     </td>
                                     <td>
+                                        @if($item->id != Auth::user()->id)
+                                        @can('employees-edit')
                                         <a href="{{ route('admin-employees-edit', ['id'=>$item->id,'page' => $employees->currentPage()]) }}" class="btn btn-success" role="button">
                                             <i class="fa fa-fw fa-edit"></i>
                                         </a>
+                                        @endcan
+                                        @can('employees-delete')
                                         <a href="{{ route('admin-employees-delete', ['id' => $item->id, 'page' => $employees->currentPage()]) }}" class="btn btn-danger" role="button" onclick="confirmDelete(event,this)">
                                             <i class="fa fa-fw fa-trash-o"></i>
                                         </a>
+                                        @endcan
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -103,15 +111,9 @@
                         </table>
                         {{ $employees->appends(Request::except('page'))->links()}}
                     </div>
-                    <!-- /.box-body -->
-
                 </div>
-                <!-- /.box -->
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </section>
-    <!-- /.content -->
 </div>
 @endsection

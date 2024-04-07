@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('ord_user_name');
             $table->string('ord_address', 150)->nullable();
             $table->string('ord_phone_no', 15);
+            $table->string('ord_email');
             $table->string('ord_pay_status', 50);
             $table->string('ord_payment', 50);
             $table->string('ord_status', 50);

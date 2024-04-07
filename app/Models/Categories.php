@@ -13,7 +13,7 @@ class Categories extends Model
     protected $fillable = ['cate_id ','cate_name','cate_img', 'cate_parent_id','deleted_at'];
 
     public function product(){
-        return $this->hasMany(Products::class, 'category_id');
+        return $this->hasMany(Products::class, 'category_id','cate_id');
     }
 
     public $timestamps = true;

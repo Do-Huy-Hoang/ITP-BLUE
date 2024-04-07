@@ -25,6 +25,6 @@ Route::prefix('admin')->group(function (){
     });
     Route::prefix('/employees')->group(function (){
         Route::post('/create', [EmployeesController::class, 'create'])->name('post-employee-create');
-        Route::post('/update/{id}',[EmployeesController::class, 'update'])->name('post-employee-create');
+        Route::post('/update/{id}',[EmployeesController::class, 'update'])->name('post-employee-update');
     });
 });

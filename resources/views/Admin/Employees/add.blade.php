@@ -10,15 +10,15 @@
 <script src="{{asset('AdminLTE-2.4.18/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 <script src="{{asset('AdminLTE-2.4.18/bower_components/ckeditor/ckeditor.js')}}"></script>
 <script src="{{asset('admins/adminJs.js')}}"></script>
+<script src="{{asset('js/google.api.js')}}"></script>
 @endsection
 @section('content')
-<div class="content-wrapper">
-    <!-- Main content -->
+<div class="content-wrapper">   
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{route('admin-products')}}" class="btn btn-link"><i class="fa fa-long-arrow-alt-left" ria-hidden="true"></i> Back</a>
+                    <a href="{{route('admin-products')}}" class="btn btn-link"><i class="fa  fa-chevron-left" ria-hidden="true"></i> Back</a>
                 </div>
                 <div class="col-md-12">
                     <div class="panel-body add">
@@ -26,21 +26,21 @@
                             @csrf
                             <div class="form-group">
                                 <label for="us_name">* Employee name</label>
-                                <input  type="text" class="form-control @error('us_name') is-invalid @enderror" id="us_name" name="us_name" placeholder="Enter name product" value="{{old('us_name')}}">
+                                <input  type="text" class="form-control @error('us_name') is-invalid @enderror" id="us_name" name="us_name" placeholder="Enter employee name" value="{{old('us_name')}}">
                             </div>
                             @error('us_name')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <div class="form-group">
                                 <label for="email">* Email</label>
-                                <input  type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter price product" value="{{old('email')}}">
+                                <input  type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter email" value="{{old('email')}}">
                             </div>
                             @error('email')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <div class="form-group">
                                 <label for="us_phone">* Phone</label>
-                                <input  type="floatval" class="form-control @error('us_phone') is-invalid @enderror" id="us_phone" name="us_phone" placeholder="Enter quantity product" value="{{old('us_phone')}}">
+                                <input  type="floatval" class="form-control @error('us_phone') is-invalid @enderror" id="us_phone" name="us_phone" placeholder="Enter phone number" value="{{old('us_phone')}}">
                             </div>
                             @error('us_phone')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -70,6 +70,13 @@
                                 <input  type="text" class="form-control @error('emp_password') is-invalid @enderror" id="emp_password" name="emp_password" placeholder="Enter password" value="{{old('emp_password')}}">
                             </div>
                             @error('emp_password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="emp_password">* Address</label>
+                                <input type="text" class="form-control @error('address') is-invalid @enderror" placeholder="Enter address" id="address" name="address" aria-label="Address" autocomplete="off" data-old="{{old('address')}}" value="@if(Auth::check() && old('address') == null){{Auth::user()->us_address}}@else{{old('address')}}@endif">
+                            </div>
+                            @error('address')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <div class="form-group">
@@ -107,8 +114,8 @@
                         </form>
                     </div>
                 </div>
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div><!-- /.content -->
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

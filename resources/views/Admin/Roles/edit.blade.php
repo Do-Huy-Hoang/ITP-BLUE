@@ -14,7 +14,7 @@
     <!-- Content Header (Page header) -->
     <!-- /.content-header -->
 
-    <!-- Main content -->
+    
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -86,9 +86,9 @@
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+            
+        </div>
     </div>
-    <!-- /.content -->
+   
 </div>
 @endsection

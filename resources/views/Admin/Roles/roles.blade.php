@@ -28,12 +28,10 @@
             Roles
         </h1>
         <ol class="breadcrumb">
-            <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Roles</li>
         </ol>
     </section>
-
-    <!-- Main content -->
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
@@ -41,9 +39,11 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col-xs-4 ">
-                                <div class="button">
-                                    <a href="{{ route('admin-roles-add') }}"><button class="btn btn-success btn-add">Add Role</button></a>
-                                </div>
+                                @can('roles-add')
+                                <div class="button">       
+                                    <a href="{{ route('admin-roles-add') }}"><button class="btn btn-success btn-add">Add Role</button></a>                                      
+                                 </div>
+                                @endcan
                             </div>
                             <div class="col-xs-8 ">
                                 <form method="GET" action="{{route('admin-roles')}}" id="form-search">
@@ -75,12 +75,18 @@
                                     <td>{{ $item->rol_name }}</td>
                                     <td>{{ $item->rol_display_name }}</td>
                                     <td>
-                                        <a href="{{ route('admin-roles-edit', ['id'=>$item->rol_id]) }}" class="btn btn-success" role="button">
-                                            <i class="fa fa-fw fa-edit"></i>
-                                        </a>
-                                        <a href="{{ route('admin-roles-delete', ['id' => $item->rol_id]) }}" class="btn btn-danger" role="button" onclick="confirmDelete(event,this)">
-                                            <i class="fa fa-fw fa-trash-o"></i>
-                                        </a>
+                                        @if($item->rol_name != "Customer" && $item->rol_name != "Admin")
+                                            @can('roles-edit')
+                                            <a href="{{ route('admin-roles-edit', ['id'=>$item->rol_id]) }}" class="btn btn-success" role="button">
+                                                <i class="fa fa-fw fa-edit"></i>
+                                            </a>
+                                            @endcan
+                                            @can('roles-delete')
+                                            <a href="{{ route('admin-roles-delete', ['id' => $item->rol_id]) }}" class="btn btn-danger" role="button" onclick="confirmDelete(event,this)">
+                                                <i class="fa fa-fw fa-trash-o"></i>
+                                            </a>
+                                            @endcan
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -95,16 +101,10 @@
                             </thead>
                         </table>
                         {{ $roles->links()}}
-                    </div>
-                    <!-- /.box-body -->
-
-                </div>
-                <!-- /.box -->
-            </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
+                        </div>                  
+                </div>        
+            </div>     
+        </div>     
     </section>
-    <!-- /.content -->
 </div>
 @endsection

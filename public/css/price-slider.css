@@ -1,0 +1,58 @@
+/* Định dạng chung cho các input */
+form input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+/* Khi focus vào input */
+form input[type="number"]:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px 0 rgba(0, 128, 0, 0.2);
+}
+
+
+/* Định dạng form */
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Định dạng input */
+.filter-form input {
+    width: calc(50% - 10px);
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Định dạng nút "Apply" */
+.apply-button {
+    width: calc(100% - 10px);
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Khi hover vào nút "Apply" */
+.apply-button:hover {
+    background-color: #45a049;
+}
+
+/* Khi focus vào nút "Apply" */
+.apply-button:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px 0 rgba(0, 128, 0, 0.2);
+}

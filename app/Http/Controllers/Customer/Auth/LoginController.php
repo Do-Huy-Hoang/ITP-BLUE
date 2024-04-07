@@ -37,8 +37,19 @@ class LoginController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
             if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
-                $request->session()->regenerate(); 
-                return redirect()->intended('success-message')->with('title', 'Login success');
+                $request->session()->regenerate();
+                $checkAdmin = true;
+                foreach (Auth::user()->roles as $item) {
+                    if($item['rol_name'] === 'Customer'){
+                        $checkAdmin = false;
+                    }
+                }
+                return redirect()->intended('success-message')->with([
+                    'title' => 'Login success',
+                    'message' => 'Welcome back, user!',
+                    'admin' => $checkAdmin,
+                ]);
+                
             }else{
                 return redirect()->back()->withInput()->with('error_message', 'Email or password is incorrect');
             }

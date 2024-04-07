@@ -3,7 +3,7 @@
 <title>Products</title>
 @endsection
 @section('Css')
-    <link rel="stylesheet" href="{{asset('admins\adminStyless.css')}}">
+<link rel="stylesheet" href="{{asset('admins\adminStyless.css')}}">
 @endsection
 @section('Js')
 <script>
@@ -17,7 +17,6 @@
             'autoWidth': false
         })
     })
-
 </script>
 <script src="{{asset('admins\adminJs.js')}}"></script>
 
@@ -29,12 +28,10 @@
             Products
         </h1>
         <ol class="breadcrumb">
-            <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">products</li>
         </ol>
     </section>
-
-    <!-- Main content -->
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
@@ -42,9 +39,11 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col-xs-4 ">
+                                @can('products-add')
                                 <div class="button">
-                                    <a href="{{ route('admin-products-add') }}"><button class="btn btn-success btn-add">Add Product</button></a>
+                                    <a href="{{ route('admin-products-add') }}"><button class="btn btn-success btn-add">Add Product</button></a>                                   
                                 </div>
+                                @endcan
                             </div>
                             <div class="col-xs-8 ">
                                 <form method="GET" action="{{route('admin-products')}}" id="form-search">
@@ -58,7 +57,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-header -->
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -86,17 +84,21 @@
                                     <td>{{ $item->category->cate_name}}</td>
                                     <th>
                                         <a href="{{ route('admin-products-change-status', ['id'=>$item->pro_id,'page' => $products->currentPage()]) }}" class="btn @if($item->pro_status == true) btn-success @else btn btn-danger @endif " role="button">
-                                            @if($item->pro_status == true) On @else Off @endif 
+                                            @if($item->pro_status == true) On @else Off @endif
                                         </a>
-                                       
+
                                     </th>
                                     <td>
+                                        @can('products-edit')
                                         <a href="{{ route('admin-products-edit', ['id'=>$item->pro_id,'page' => $products->currentPage()]) }}" class="btn btn-success" role="button">
                                             <i class="fa fa-fw fa-edit"></i>
                                         </a>
-                                        <a href="{{ route('admin-products-delete', ['id' => $item->pro_id,'page' => $products->currentPage()]) }}" class="btn btn-danger" role="button" onclick ="confirmDelete(event,this)">
+                                        @endcan
+                                        @can('products-delete')
+                                        <a href="{{ route('admin-products-delete', ['id' => $item->pro_id,'page' => $products->currentPage()]) }}" class="btn btn-danger" role="button" onclick="confirmDelete(event,this)">
                                             <i class="fa fa-fw fa-trash-o"></i>
                                         </a>
+                                        @endcan
                                     </td>
                                 </tr>
                                 @endforeach
@@ -114,16 +116,9 @@
                         </table>
                         {{ $products->appends(Request::except('page'))->links() }}
                     </div>
-                    <!-- /.box-body -->
-
                 </div>
-                <!-- /.box -->
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </section>
-    <!-- /.content -->
 </div>
 @endsection
-

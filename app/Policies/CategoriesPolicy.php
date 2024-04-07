@@ -10,26 +10,22 @@ class CategoriesPolicy
     use HandlesAuthorization;
     public function __construct()
     {
-  
-    }
 
+    }
     public function view(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.category.list-category'));
+        return $user->checkPermissionAccess(config('permissions.access.categories.list-categories'));
     }
-
     public function create(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.category.add-category'));
+        return $user->checkPermissionAccess(config('permissions.access.categories.add-categories'));
     }
-
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.category.edit-category'));
+        return $user->checkPermissionAccess(config('permissions.access.categories.edit-categories'));
     }
-
     public function delete(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.category.delete-category'));
+        return $user->checkPermissionAccess(config('permissions.access.categories.delete-categories'));
     }
 }

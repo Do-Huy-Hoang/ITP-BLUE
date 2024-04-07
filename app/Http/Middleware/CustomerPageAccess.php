@@ -15,7 +15,7 @@ class CustomerPageAccess
                     return $next($request);
                 }
             }
-            return redirect()->route('404');
+            abort(404);
         }
         return $next($request);
     }

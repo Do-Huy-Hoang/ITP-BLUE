@@ -2,38 +2,44 @@
 
 return [
     'access' => [
-        'category'=>[
-            'list-category'=>'category_List',
-            'add-category'=>'category_Add',
-            'edit-category'=>'category_Edit',
-            'delete-category'=>'category_Delete',
+        'categories'=>[
+            'list-categories'=>'categories_List',
+            'add-categories'=>'categories_Add',
+            'edit-categories'=>'categories_Edit',
+            'delete-categories'=>'categories_Delete',
         ],
-        'product'=>[
-            'list-product'=>'products_List',
-            'add-product'=>'products_Add',
-            'edit-product'=>'products_Edit',
-            'delete-product'=>'products_Delete',
+        'products'=>[
+            'list-products'=>'products_List',
+            'add-products'=>'products_Add',
+            'edit-products'=>'products_Edit',
+            'delete-products'=>'products_Delete',
         ],
-        'user_list'=>[
-            'list-user'=>'user_List',
-            'edit-user'=>'user_Edit',
-            'delete-user'=>'user_Delete',
+        'employees'=>[
+            'list-employees'=>'employees_List',
+            'add-employees'=>'employees_Add',
+            'edit-employees'=>'employees_Edit',
+            'delete-employees'=>'employees_Delete',
         ],
-        'role'=>[
-            'list-role'=>'role_List',
-            'add-role'=>'role_Add',
-            'edit-role'=>'role_Edit',
-            'delete-role'=>'role_Delete',
+        'roles'=>[
+            'list-roles'=>'roles_List',
+            'add-roles'=>'roles_Add',
+            'edit-roles'=>'roles_Edit',
+            'delete-roles'=>'roles_Delete',
         ],
         'permission'=>[
             'add-permission'=>'permission_Add',
         ],
+        'orders'=>[
+            'list-orders'=>'orders_List',
+            'edit-orders'=>'orders_Edit',
+        ],
     ],
     'table_module'=>[
-        'category',
+        'categories',
         'products',
-        'user',
-        'role',
+        'employees',
+        'orders',
+        'roles',
         'permission',
     ],
     'module_childrent'=>[

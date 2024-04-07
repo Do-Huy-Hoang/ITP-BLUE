@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('rol_name')->nullable(false);
             $table->string('rol_display_name')->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

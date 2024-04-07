@@ -19,7 +19,8 @@ class User extends Authenticatable
         'us_gender',
         'us_birthday',
         'us_phone',
-        'us_address'
+        'us_address',
+        'us_img',
     ];
 
     protected $hidden = [
@@ -36,6 +37,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Roles::class,'role_users','user_id','role_id');
     }
 
+    public function rolesUser()
+    {
+        return $this->hasMany(RoleUser::class, 'user_id','id'); 
+    }
+
     public function checkPermissionAccess($permissionCheck){
         $role = auth()->user()->roles;
         foreach ($role as $roleItem){
@@ -45,5 +51,13 @@ class User extends Authenticatable
             }
             return false;
         }
+    }
+    public function orders()
+    {
+        return $this->hasMany(Orders::class, 'user_id')->withTrashed(); 
+    }
+    public function wishlistItems()
+    {
+        return $this->belongsToMany(Products::class, 'wishlists', 'user_id', 'product_id')->withTimestamps();
     }
 }

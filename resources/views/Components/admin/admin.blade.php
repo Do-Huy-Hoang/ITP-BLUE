@@ -66,6 +66,9 @@
     <script src="{{asset('AdminLTE-2.4.18/bower_components/Flot/jquery.flot.categories.js')}}"></script>
     <!-- Page script -->
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+    <script type="text/javascript"
+        src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places&language=vi&region=VN" >
+    </script>
     @include('sweetalert::alert')
     @yield('Js')
 </body>

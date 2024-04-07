@@ -13,10 +13,10 @@ class Products extends Model
     protected $fillable= ['pro_id','pro_name','pro_brand','pro_description','pro_price','pro_quantity','pro_status','category_id','pro_img', 'created_at','is_featured'];
 
     public function category(){
-        return $this->belongsTo(Categories::class, 'category_id');
+        return $this->belongsTo(Categories::class, 'category_id', 'cate_id');
     }
 
     public function productImages(){
-        return $this->hasMany(ProductImage::class,'product_id');
+        return $this->hasMany(ProductImage::class,'product_id','proImg_id');
     }
 }

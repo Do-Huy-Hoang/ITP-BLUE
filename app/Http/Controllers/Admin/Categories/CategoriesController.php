@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Categories;
 use App\Models\Products;
 use App\Services\Recursive as Recursive;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -39,8 +40,12 @@ class CategoriesController extends Controller
             }
             return view('Admin.Category.category', compact('categories'));
         } catch (\Throwable $exception) {
-            $categories = [];
-            DB::rollBack();
+            $categories = new LengthAwarePaginator(
+                collect([]),
+                collect([])->count(),
+                20,
+                1
+            );
             Log::channel('daily')->error('Message: ' . $exception->getMessage() . ' Line :' . $exception->getLine());
             Alert::error('Error', 'Connection failed !');
             return view('Admin.Category.category', compact('categories'));

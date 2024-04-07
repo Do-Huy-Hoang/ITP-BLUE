@@ -28,12 +28,10 @@
             Categories
         </h1>
         <ol class="breadcrumb">
-            <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">categories</li>
         </ol>
     </section>
-
-    <!-- Main content -->
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
@@ -41,9 +39,11 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col-xs-4 ">
+                                @can('categories-add')
                                 <div class="button">
-                                    <a href="{{ route('admin-categories-add') }}"><button class="btn btn-success btn-add">Add Category</button></a>
+                                    <a href="{{ route('admin-categories-add') }}"><button class="btn btn-success btn-add">Add Category</button></a>              
                                 </div>
+                                @endcan
                             </div>
                             <div class="col-xs-8 ">
                                 <form method="GET" action="{{route('admin-categories')}}" id="form-search">
@@ -69,7 +69,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($categories as $item)                              
+                                @foreach($categories as $item)
                                 <tr>
                                     <td>{{$item->cate_id}}</td>
                                     <td>{{ $item->cate_name }}</td>
@@ -79,12 +79,16 @@
                                         @endif
                                     </td>
                                     <td>
+                                        @can('categories-edit')
                                         <a href="{{ route('admin-categories-edit', ['id'=>$item->cate_id,'page' => $categories->currentPage()]) }}" class="btn btn-success" role="button">
                                             <i class="fa fa-fw fa-edit"></i>
                                         </a>
-                                        <a href="{{ route('admin-categories-delete', ['id' => $item->cate_id, 'page' => $categories->currentPage()]) }}" class="btn btn-danger" role="button" onclick ="confirmDelete(event,this)">
+                                        @endcan
+                                        @can('categories-delete')
+                                        <a href="{{ route('admin-categories-delete', ['id' => $item->cate_id, 'page' => $categories->currentPage()]) }}" class="btn btn-danger" role="button" onclick="confirmDelete(event,this)">
                                             <i class="fa fa-fw fa-trash-o"></i>
                                         </a>
+                                        @endcan
                                     </td>
                                 </tr>
                                 @endforeach
@@ -100,16 +104,10 @@
                             </thead>
                         </table>
                         {{ $categories->appends(Request::except('page'))->links()}}
-                    </div>
-                    <!-- /.box-body -->
-
-                </div>
-                <!-- /.box -->
-            </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
+                         </div>                  
+                </div>        
+            </div>     
+        </div>     
     </section>
-    <!-- /.content -->
 </div>
 @endsection

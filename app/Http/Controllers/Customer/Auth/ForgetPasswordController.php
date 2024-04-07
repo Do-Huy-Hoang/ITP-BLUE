@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Customer\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\PasswordResetTokens;
 use App\Models\User;
-use App\Services\OtpService;
+use App\Services\EmailService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +18,7 @@ use function PHPUnit\Framework\isEmpty;
 class ForgetPasswordController extends Controller
 {
     protected $otpService;
-    public function __construct(OtpService $otpService)
+    public function __construct(EmailService $otpService)
     {
         $this->otpService = $otpService;
     }

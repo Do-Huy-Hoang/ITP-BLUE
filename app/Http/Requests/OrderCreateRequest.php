@@ -16,6 +16,7 @@ class OrderCreateRequest extends FormRequest
         return [
             'ord_user_name'=>'required|min:2|max:255',
             'ord_phone_no' => ['required', 'regex:/^((\+84|84|0|0084)(3|5|7|8|9))[0-9]{8}$/i'],
+            'ord_email' => ['required', 'regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/'],
             'address'=>'required',
         ];
     }
@@ -27,6 +28,8 @@ class OrderCreateRequest extends FormRequest
             'cate_name.min' => 'Name must be greater than 2 characters',
             'ord_phone_no.required' => 'Phone number cannot be blank',
             'ord_phone_no.regex' => 'Incorrect telephone number',
+            'ord_email.required' => 'Email cannot be blank',
+            'ord_email.regex' => 'Invalid email format',
             'address.required' => 'Address cannot be blank',
         ];
     }

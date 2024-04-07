@@ -15,7 +15,8 @@ return new class extends Migration
             $table->increments('per_id');
             $table->string('per_name')->nullable(false);
             $table->string('per_display_name')->nullable(false);
-            $table->integer('per_parent_id')->default(0);
+            $table->integer('per_parent_id')->default(0);      
+            $table->string('key_code')->nullable(true);
             $table->timestamps();
         });
     }

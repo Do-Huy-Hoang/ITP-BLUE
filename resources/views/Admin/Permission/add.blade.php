@@ -6,10 +6,6 @@
 
 @section('content')
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <!-- /.content-header -->
-
-    <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -25,12 +21,10 @@
                                     <option value="{{$moduleItem}}">{{$moduleItem}}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                            <!-- check --->
+                            </div>                           
                             <div class="form-group">
                                 <div class="card border-dark mb-3">
                                     <div class="row text-center col-md-12">
-                                        <!-- list --->
                                         @foreach(config('permissions.module_childrent') as $moduleItem)
                                         <div class="card-body col-md-3">
                                             <h4 class="card-title">
@@ -50,11 +44,8 @@
                         </form>
                     </div>
                 </div>
-            </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+            </div>        
+        </div>
     </div>
-    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
-    <!-- /.content -->
 </div>
 @endsection

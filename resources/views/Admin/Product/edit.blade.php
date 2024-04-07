@@ -15,12 +15,11 @@
 
 @section('content')
 <div class="content-wrapper">
-    <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{route('admin-products')}}" class="btn btn-link"><i class="fa fa-long-arrow-alt-left" ria-hidden="true"></i> Back</a>
+                    <a href="{{route('admin-products')}}" class="btn btn-link"><i class="fa  fa-chevron-left" ria-hidden="true"></i> Back</a>
                 </div>
                 <div class="col-md-12">
                     <div class="panel-body add">
@@ -173,8 +172,8 @@
                         </form>
                     </div>
                 </div>
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div><!-- /.content -->
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

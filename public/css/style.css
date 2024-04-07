@@ -33,7 +33,8 @@
 html,
 body {
 	height: 100%;
-	font-family: "Cairo", sans-serif;
+	font-family: "Lora", serif !important;
+	font-optical-sizing: auto;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
@@ -1746,11 +1747,14 @@ ol {
 	padding: 13px 16px 13px;
 	background: #f5f5f5;
 }
-
-.product__details__text ul {
+.product__details__text hr{
 	border-top: 1px solid #ebebeb;
-	padding-top: 40px;
-	margin-top: 50px;
+	margin-top: 30px; 	
+	margin-bottom: 30px; 
+}
+.product__details__text ul {
+	padding-top: 20px;
+	margin-bottom: 50px; 
 }
 
 .product__details__text ul li {
@@ -3489,140 +3493,131 @@ ol {
 	}
 }
 
+/* Custom scrollbar */
 .overlay {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: calc(100% - 25px); 
-    width: calc(100vw - 50px); 
-	height: calc(100vw - 1000px); 
-    max-width: 800px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    padding: 20px; 
-    overflow-y: auto; 
-    max-height: calc(100vh - 40px);
-}
+	display: none;
+	position: absolute;
+	top: 0;
+	left: calc(100% - 25px); 
+	width: calc(100vw - 50px); 
+	max-width: 800px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	z-index: 9999;
+	padding: 20px; 
+	max-height: calc(100vh - 40px);
+	overflow-y: auto; /* Enable vertical scrollbar */
+	scrollbar-width: thin; /* For Firefox */
+	scrollbar-color: #888 #f5f5f5; /* For Firefox */
+  }
+
+  .overlay::-webkit-scrollbar {
+	width: 8px; /* Width of vertical scrollbar */
+  }
+
+  .overlay::-webkit-scrollbar-track {
+	background: #f5f5f5; /* Track color */
+  }
+
+  .overlay::-webkit-scrollbar-thumb {
+	background-color: #888; /* Thumb color */
+	border-radius: 10px; /* Rounded corners */
+	border: 2px solid #f5f5f5; /* Border around thumb */
+  }
 
 li {
-	position: relative; 
+    position: relative; 
 }
+
 .cate-li:hover {
     background-color: #42cef5;
 }
 
-.overlay ul{
-	border: 1px solid #ebebeb;
-	padding-left: 40px;
-	padding-top: 10px;
-	padding-bottom: 12px;
+.overlay ul {
+    border: 1px solid #ebebeb;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 12px;
 }
 
 .dropbtn {
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-  }
-  
-  #arr {
-	position: absolute;
-	top: 50%;
-	right: -3px;
-	transform: translateY(-50%);
-	transition: transform 0.3s; 
-  }
-  
-  .rotate {
-	transform: translateY(-50%) rotate(180deg) !important;
-  }
-
-  .dropdown-content {
-	position: absolute;
-	background-color: #f9f9f9;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 1;
-  }
-
-  .dropdown-content a {
-	color: black;
-	padding: 12px 16px;
-	text-align: center;
-	text-decoration: none;
-	display: block;
-  }
-  
-  .dropdown-content a:hover {
-	background-color: #f1f1f1;
-  }
-  
-  .dropdown:hover .dropdown-content {
-	display: block;
-  }
-
-  /* overlay-insde */
-@font-face {
-    font-family: "Calluna";
-    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/callunasansregular-webfont.woff")
-        format("woff");
-}
-body {
-    background: url(//subtlepatterns.com/patterns/scribble_light.png);
-    font-family: Calluna, Arial, sans-serif;
-    min-height: 1000px;
-}
-#columns {
-    column-width: 320px;
-    column-gap: 15px;
-    width: 90%;
-    max-width: 1100px;
-    margin: 50px auto;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
 }
 
-div#columns figure {
-    background: #fefefe;
-    border: 2px solid #fcfcfc;
-    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
-    margin: 0 2px 15px;
-    padding: 15px;
-    padding-bottom: 10px;
-    transition: opacity 0.4s ease-in-out;
-    display: inline-block;
-    column-break-inside: avoid;
+#arr {
+    position: absolute;
+    top: 50%;
+    right: -3px;
+    transform: translateY(-50%);
+    transition: transform 0.3s; 
 }
 
-div#columns figure img {
-    width: 100%;
-    height: auto;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 15px;
-    margin-bottom: 5px;
+.rotate {
+    transform: translateY(-50%) rotate(180deg) !important;
 }
 
-div#columns figure figcaption {
-    font-size: 0.9rem;
-    color: #444;
-    line-height: 1.5;
+.dropdown-content {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
-div#columns small {
-    font-size: 1rem;
-    float: right;
-    text-transform: uppercase;
-    color: #aaa;
-}
-
-div#columns small a {
-    color: #666;
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-align: center;
     text-decoration: none;
-    transition: 0.4s color;
+    display: block;
 }
 
-div#columns:hover figure:not(:hover) {
-    opacity: 0.4;
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
 }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Adjustments for Bootstrap grid */
+.overlay-container {
+	height: 400px; /* Set a fixed height to enable scrolling */
+	overflow-y: auto; /* Enable vertical scrollbar */
+	scrollbar-width: thin; /* For Firefox */
+	scrollbar-color: #888 #f5f5f5; /* For Firefox */
+  }
+
+  .overlay-container::-webkit-scrollbar {
+	width: 8px; /* Width of vertical scrollbar */
+  }
+
+  .overlay-container::-webkit-scrollbar-track {
+	background: #f5f5f5; /* Track color */
+  }
+
+  .overlay-container::-webkit-scrollbar-thumb {
+	background-color: #888; /* Thumb color */
+	border-radius: 10px; /* Rounded corners */
+	border: 2px solid #f5f5f5; /* Border around thumb */
+  }
+
+.overlay .row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.overlay .col-lg-4,
+.overlay .col-md-6 {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* Your other styles */
+
 
 @media screen and (max-width: 750px) {
     #columns {

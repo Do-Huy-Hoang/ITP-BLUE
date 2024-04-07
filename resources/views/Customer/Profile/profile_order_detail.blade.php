@@ -193,7 +193,7 @@
         </div>
     </div>
     <div class="pricing">
-        @foreach ($order->orderDetails as $detail)
+        @foreach ($order->order_detail as $detail)
             <div class="row">
                 <div class="col-9">
                     <span id="name">{{ $detail->ordd_product_name }}</span>
