@@ -44,6 +44,9 @@ see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/8#issue-222
 
 ![profile page](https://github.com/Do-Huy-Hoang/ITP-BLUE/blob/main/public/img/git/profile.png)
 see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/5#issue-2229794216)
+**<-----------------------------------------------------------------Customer--------------------------------------------------------------------------->**
+![admin page](https://github.com/Do-Huy-Hoang/ITP-BLUE/blob/main/public/img/git/adminhome.png)
+see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/9#issue-2229834740)
 <a name="requirements"></a>
 ## Requirements
 
