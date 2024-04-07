@@ -67,16 +67,16 @@ Here is how you can run the project locally:
     git clone https://github.com/Do-Huy-Hoang/ITP-BLUE.git
     ```
 
-1. Go into the project root directory
+2. Go into the project root directory
     ```sh
     cd ITP-BLUE
     ```
 
-1. Copy .env.example file to .env file
+3. Copy .env.example file to .env file
     ```sh
     cp .env.example .env
     ```
-1. Go to `.env` file 
+4. Go to `.env` file 
    set database
    ```sh
    DB_DATABASE=itpblue
@@ -99,34 +99,45 @@ Here is how you can run the project locally:
         
     > Make sure to follow your database username and password
 
-1. Install PHP dependencies 
+5. Install PHP dependencies 
     ```sh
     composer install
     ```
 
-1. Generate key 
+6. Generate key 
     ```sh
     php artisan key:generate
     ```
     
-1. Run migration and seeder
-    ```
-    php artisan migrate --seed
-    ```
-    * Terminal will display a notification:
-         The database 'itpblue' does not exist on the 'mysql' connection.  
-            Would you like to create it? (yes/no) []
-
-     > yes
-
-1. Run server 
+7. Create database and import databse
+   - Install xampp
+   - Open XAMPP with administrator privileges
+   - Set up Apache: config->php.ini
+     ```sh
+     upload_max_filesize=250M
+     post_max_size=260M
+     max_execution_time=10000
+     memory_limit=1000M
+     ```
+   - Set up MySql: config->my.ini
+     ```sh
+     max_allowed_packet=250M
+     innodb_buffer_pool_size=16M
+     ```
+   - Quit xampp
+   - Open XAMPP with administrator privileges
+   - Start Apache and MySql
+   - Click on the MySQL admin to open the database management web page
+   - Create database itpblue
+   - Import file 'itpblue .sql' in project
+8. Run server 
     > for valet users visit `velflix.test` in your favorite browser
    
     ```sh
     php artisan serve
     ```  
 
-1. Visit `localhost:8000` in your favorite browser.     
+9. Visit `localhost:8000` in your favorite browser.     
 
     > Make sure to follow your Laravel local Development Environment.
     
