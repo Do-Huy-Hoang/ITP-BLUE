@@ -14,7 +14,7 @@ IPT BLUE is a Laravel clone project using TALL stack  [Laravel](https://laravel.
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Contributing](#contributing)
-* [License](#license)
+* [Account](#account)
 
 <a name="screenshots"></a>
 ## Screenshots
@@ -131,9 +131,7 @@ Here is how you can run the project locally:
    - Click on the MySQL admin to open the database management web page
    - Create database itpblue
    - Access the project, extract the 'itpblue.rar' file, then return to the MySQL interface. Click on the 'itpblue' database, select 'Import,' choose the 'itpblue.sql' file that has been extracted, and finally click button 'Import'
-8. Run server 
-    > for valet users visit `velflix.test` in your favorite browser
-   
+8. Run server    
     ```sh
     php artisan serve
     ```  
@@ -142,6 +140,8 @@ Here is how you can run the project locally:
 
     > Make sure to follow your Laravel local Development Environment.
     
+## Account
+Pull requests are welcome.
 
 ## Contributing
 Pull requests are welcome.
