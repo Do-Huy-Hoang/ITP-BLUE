@@ -21,28 +21,28 @@ IPT BLUE is a Laravel clone project using TALL stack  [Laravel](https://laravel.
 <a name="screenshots"></a>
 ## Screenshots
 **Customer**
-![home page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+![home page](https://github.com/Do-Huy-Hoang/ITP-BLUE/blob/main/public/img/git/home.png)
 see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
 
-![shop page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+![shop page](https://github.com/Do-Huy-Hoang/ITP-BLUE/blob/main/public/img/git/shop.png)
 see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/2#issue-2229793768)
 
-![cart page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+![cart page](https://github.com/Do-Huy-Hoang/ITP-BLUE/blob/main/public/img/git/cart.png)
 see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/3#issue-2229794000)
 
-![order page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+![order page](https://github.com/Do-Huy-Hoang/ITP-BLUE/blob/main/public/img/git/order.png)
 see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/4#issue-2229794094)
 
-![login page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+![login page](https://github.com/Do-Huy-Hoang/ITP-BLUE/blob/main/public/img/git/login.png)
 see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/6#issue-2229794300)
 
-![resgister page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+![resgister page](https://github.com/Do-Huy-Hoang/ITP-BLUE/blob/main/public/img/git/register.png)
 see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/7#issue-2229794400)
 
-![fotgot password page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+![fotgot password page](https://github.com/Do-Huy-Hoang/ITP-BLUE/blob/main/public/img/git/forgetpassword.png)
 see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/8#issue-2229794629)
 
-![profile page](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/1#issue-2229793631)
+![profile page](https://github.com/Do-Huy-Hoang/ITP-BLUE/blob/main/public/img/git/profile.png)
 see full page [here](https://github.com/Do-Huy-Hoang/ITP-BLUE/issues/5#issue-2229794216)
 <a name="requirements"></a>
 ## Requirements
@@ -128,7 +128,7 @@ Here is how you can run the project locally:
    - Start Apache and MySql
    - Click on the MySQL admin to open the database management web page
    - Create database itpblue
-   - Import file 'itpblue .sql' in project
+   - Access the project, extract the 'itpblue.rar' file, then return to the MySQL interface. Click on the 'itpblue' database, select 'Import,' choose the 'itpblue.sql' file that has been extracted, and finally click button 'Import'
 8. Run server 
     > for valet users visit `velflix.test` in your favorite browser
    
