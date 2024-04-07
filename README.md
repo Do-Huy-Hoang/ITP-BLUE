@@ -110,7 +110,6 @@ Here is how you can run the project locally:
     ```
     
 7. Create database and import databse
-   - Install xampp
    - Open XAMPP with administrator privileges
    - Set up Apache: config->php.ini
      ```sh
