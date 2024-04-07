@@ -3,10 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CategoryAddRequets extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -15,7 +15,16 @@ class CategoryAddRequets extends FormRequest
     public function rules()
     {
         return [
-            'cate_name'=>'required|unique:categories|min:2|max:255'
+            'cate_name' => [
+                'required',
+                Rule::unique('categories')->where(function ($query) {
+                    if ($this->input('id_parent') !== null) {
+                        $query->where('cate_parent_id', $this->input('id_parent'));
+                    }
+                }),
+                'min:2',
+                'max:255'
+            ]
         ];
     }
     public function messages()
