@@ -58,7 +58,7 @@ class CategoriesController extends Controller
         return view('Admin.Category.add', compact('htmlOptions'));
     }
 
-    public function edit($id, Recursive $recursive)
+    public function edit($id,$parent_id, Recursive $recursive)
     {
         $category = $this->categories::withoutTrashed()->find($id);
         $htmlOptions = $this->recursive->categoryRecursiveEdit($category->cate_parent_id, 0, '');
@@ -98,7 +98,7 @@ class CategoriesController extends Controller
 
 
 
-    public function update($id, CategoryUpdateResquest $request)
+    public function update($id,$parent_id, CategoryUpdateResquest $request)
     {
         try {
             DB::beginTransaction();
