@@ -15,7 +15,7 @@ Route::prefix('admin')->group(function (){
     Route::prefix('/categories')->group(function (){
         Route::get('/', [CategoriesController::class, 'index'])->middleware('can:categories-list')->name('admin-categories');
         Route::get('/add', [CategoriesController::class, 'add'])->middleware('can:categories-add')->name('admin-categories-add');
-        Route::get('/edit/{id}',[CategoriesController::class, 'edit'])->middleware('can:categories-edit')->name('admin-categories-edit');
+        Route::get('/edit/{id}/{parent_id}',[CategoriesController::class, 'edit'])->middleware('can:categories-edit')->name('admin-categories-edit');
         Route::get('/delete/{id}',[CategoriesController::class, 'delete'])->middleware('can:categories-delete')->name('admin-categories-delete'); 
     });
     //Product

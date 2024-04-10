@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function (){
     Route::prefix('/category')->group(function (){
         Route::post('/create',  [CategoriesController::class, 'create'])->name('post-categories-create'); 
-        Route::post('/update/{id}', [CategoriesController::class, 'update'])->name('post-categories-update'); 
+        Route::post('/update/{id}/{parent_id}', [CategoriesController::class, 'update'])->name('post-categories-update'); 
     });
     Route::prefix('/permission')->group(function (){
         Route::post('/create',  [PermissionController::class, 'create'])->name('post-permission-create'); 
